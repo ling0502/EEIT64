@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>webDesign - drink</title>
+
+    <link rel="icon" href="./assets/img/favicon.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+    <!-- jquery插件 -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+
+    <!-- slick - css輪播圖插件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
+
+    <!-- fontAwesome - icon插件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link href="./assets/style.css" rel="stylesheet">
+    <!-- <link href="./assets/main.js" rel="stylesheet"> -->
+    <script type="module" src="./assets/main.js"></script>
+    <script src="./assets/data.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .content {
+            background-color: LemonChiffon;
+            height: 1200px;
+        }
+
+        .left {
+            background-color: LightGreen;
+        }
+
+        .right {
+            /* background-color: coral; */
+        }
+
+        .slick-slider,
+        .slick-list,
+        .slick-track {
+            /* height: 100%; */
+            max-height: 350px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="toolBar p-innerPage fixed-top bg-light">
+        <div class="position-absolute w-100 text-center">
+            <a href="#"><img src="./assets/img/logo.png" alt="logo" width="60px"></a>
+        </div>
+
+        <div class="row toolBarRow align-items-center" style="min-height: 60px">
+            <div class="col-5 text-center d-flex">
+                <div class="toolBarList">
+                    <a class="toolBarText" href="#">菜單</a>
+                </div>
+                <div class="toolBarList">
+                    <a class="toolBarText" href="#">購物車</a>
+                </div>
+                <div class="toolBarList">
+                    <a class="toolBarText" href="#">優惠券</a>
+                </div>
+                <div class="toolBarList">
+                    <a class="toolBarText" href="#">聯繫我們</a>
+                </div>
+            </div>
+
+            <div class="col-7 text-end toolBarText">
+                <img src="./assets/img/icon_member.png" alt="login" width="30px" height="30px">
+                <a href="#">登入/註冊</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content p-innerPage">
+        <div class="top row">
+            <div class="col-12 col-lg-4 left rounded pt-2">
+                <div>
+                    <h4>今天喝什麼</h4>
+                    <div class="text-center d-flex">
+                        <div class="px-2"><i class="fa-solid fa-map-pin"></i></div>
+                        <div><b>台中旗艦店</b></div>
+                    </div>
+                    <div class="text-center d-flex my-3">
+                        <div class="px-2"><i class="fa fa-clock"></i></div>
+                        <div><b>09:30 ~ 21:30</b></div>
+                    </div>
+                    <div class="text-center d-flex my-3">
+                        <div class="px-2"><i class="fa fa-phone"></i></div>
+                        <div><b> 04-123456789</b></div>
+                    </div>
+                    <div class="text-center d-flex my-3">
+                        <div class="px-2"><i class="fa fa-flag"></i></div>
+                        <div><b>台中市西區</b></div>
+                    </div>
+                </div>
+
+                <div class="rounded text-center d-flex justify-content-around"
+                    style="background-color: rgb(106, 179, 106)">
+                    <div class="moreInfo">
+                        <div>
+                            <i class="infoIcon click_payment fa-regular fa-credit-card"></i>
+                        </div>
+                        <div class="py-1">
+                            <b>支付方式</b>
+                            <div class="msgBox msgBox_payment">
+                                <div class="closeBtn"><i class="fa-regular fa-circle-xmark fa-2xl"></i></div>
+                                <img src="./assets/img/payment.png"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moreInfo">
+                        <div>
+                            <i class="infoIcon click_deliver fa-solid fa-motorcycle"></i>
+                        </div>
+                        <div class="py-1">
+                            <b>外送門檻</b>
+                            <div class="msgBox msgBox_deliver">
+                                <div class="closeBtn"><i class="fa-regular fa-circle-xmark fa-2xl"></i></div>
+                                <img src="./assets/img/deliver.png"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="moreInfo">
+                        <div>
+                            <i class="infoIcon fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="py-1">
+                            <b>其他分店</b>
+                            <div class="msgBox msgBox_branch">
+                                <div class="closeBtn"><i class="fa-regular fa-circle-xmark fa-2xl"></i></div>
+                                <div class="infoImg"><img src="./assets/img/branch.png"></img></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-8 right">
+                <div class="slider m-auto" id="bannerSlider">
+                    <img class="d-block w-100" src="./assets/img/banner1.jpg">
+                    <img class="d-block w-100" src="./assets/img/banner2.jpg">
+                </div>
+            </div>
+        </div>
+
+        <div class="mainMenu row mt-4">
+            <div class="col-12 col-lg-4">
+                <div class="block">
+                    <div class="menuTitle">純茶</div>
+                    <div>
+                        <ul style="list-style-type:none;">
+                            <li class="d-flex justify-content-between pe-2">
+                                <div>
+                                    <img src="./assets/img/p01.png" width="40px">
+                                    <b>紅茶</b>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="cold mx-1"></div>
+                                    <div class="hot mx-1"></div>
+                                    <div class="price mx-2"><b>30</b></div>
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between pe-2">
+                                <div>
+                                    <img src="./assets/img/p01.png" width="40px">
+                                    <b>綠茶</b>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="cold mx-1"></div>
+                                    <div class="hot mx-1"></div>
+                                    <div class="price mx-2"><b>30</b></div>
+                                </div>
+                            </li>
+                            <li class="d-flex justify-content-between pe-2">
+                                <div>
+                                    <img src="./assets/img/p01.png" width="40px">
+                                    <b>烏龍茶</b>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="cold mx-1"></div>
+                                    <div class="hot mx-1"></div>
+                                    <div class="price mx-2"><b>30</b></div>
+                                </div>
+                            </li>
+                            <li>
+                            <li class="d-flex justify-content-between pe-2">
+                                <div>
+                                    <img src="./assets/img/p01.png" width="40px">
+                                    <b>麥茶</b>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="cold mx-1"></div>
+                                    <div class="hot mx-1"></div>
+                                    <div class="price mx-2"><b>30</b></div>
+                                </div>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="block">
+                    <div class="menuTitle">奶茶</div>
+                    <div>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>奶綠</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>珍珠奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>布丁奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>仙草凍奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p02.png" width="40px">
+                                <b>阿華田</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="block">
+                    <div class="menuTitle">鮮奶</div>
+                    <div>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>熟成鮮奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>烏龍鮮奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>珍珠鮮奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>雙Q鮮奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>仙草凍鮮奶茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p03.png" width="40px">
+                                <b>芋泥鮮奶茶</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="block">
+                    <div class="menuTitle">果茶</div>
+                    <div>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>冬瓜檸檬</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>翡翠檸檬</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>百香果綠茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>柳橙綠茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>葡萄柚蜜茶</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p04.png" width="40px">
+                                <b>甘蔗青茶</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="block">
+                    <div class="menuTitle">下午茶</div>
+                    <div>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                <img src="./assets/img/p05.png" width="40px">
+                                <b>奶油紅豆餅</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p05.png" width="40px">
+                                <b>豆沙紅豆餅</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p05.png" width="40px">
+                                <b>芋頭紅豆餅</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p05.png" width="40px">
+                                <b>玉米紅豆餅</b>
+                            </li>
+                            <li>
+                                <img src="./assets/img/p05.png" width="40px">
+                                <b>起司紅豆餅</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mobile-toolBar p-innerPage fixed-bottom rounded-2 bg-light">
+        <div class="text-center d-flex">
+            <div class="mobile-toolBarList" onclick="click_order()">
+                <img src="./assets/img/icon_order.png" alt="order" class="mobile-toolBarImg">
+                <h5 class="mobile-toolBarText">菜單</h5>
+            </div>
+
+            <div class="mobile-toolBarList" onclick="click_cart()">
+                <img src="./assets/img/icon_cart.png" alt="cart" class="mobile-toolBarImg">
+                <h5 class="mobile-toolBarText">購物車</h5>
+            </div>
+
+            <div class="mobile-toolBarList" onclick="click_warn()">
+                <img src="./assets/img/icon_list.png" alt="warn" class="mobile-toolBarImg">
+                <h5 class="mobile-toolBarText">優惠券</h5>
+            </div>
+
+            <div class="mobile-toolBarList" onclick="click_member()">
+                <img src="./assets/img/icon_member.png" alt="member" class="mobile-toolBarImg">
+                <h5 class="mobile-toolBarText">我的</h5>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // window.onload = function () {
+        // }
+        function click_order() {
+            alert("click_order")
+        }
+        function click_cart() {
+            alert("click_cart")
+        }
+        function click_warn() {
+            alert("click_warn")
+        }
+        function click_member() {
+            alert("click_member")
+        }
+
+        $('#bannerSlider').slick({
+            autoplay: true,
+            autoplaySpeed: 3500,
+
+            dots: true,
+            arrows: true,
+            prevArrow: '<button type="button" class="slick-prev bannerSlider-arrow-prev"></button>',
+            nextArrow: '<button type="button" class="slick-next bannerSlider-arrow-next"></button>',
+
+            infinite: true,
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+a {
+    color: var(--bs-body-color);
+    text-decoration: none;
+}
+
+/* 避開fixed-top / fixed-bottom */
+.toolBar {
+    height: 60px;
+}
+
+.content {
+    padding-top: 70px;
+}
+
+.mobile-toolBar {
+    height: 70px;
+}
+
+/* 頂端工具列(大視窗才顯示) */
+.toolBarList {
+    flex: auto;
+    cursor: pointer;
+    text-align: center;
+}
+
+.toolBarList:hover {
+    background-color: gold;
+}
+
+.toolBarText {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.toolBarText:hover {
+    color: var(--bs-body-color);
+}
+
+/* 底部工具列(小視窗才顯示) */
+.mobile-toolBarList:hover {
+    background-color: gold;
+}
+
+.mobile-toolBarList {
+    flex: auto;
+    cursor: pointer;
+    padding: 0;
+    min-width: 80px;
+}
+
+.mobile-toolBarList:hover {
+    background-color: gold;
+}
+
+.mobile-toolBarText {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.mobile-toolBarImg {
+    width: 45px;
+    height: 45px;
+    padding: 0.25rem;
+}
+
+/* 更多資訊 */
+.moreInfo {
+    cursor: pointer;
+    padding-top: 0.5rem
+}
+
+.infoIcon {
+    font-size: 30px;
+    padding: 10px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: white
+}
+
+.msgBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: none;
+    z-index: 9999;
+    max-width: 100%;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.infoImg {
+    width: 100%;
+}
+
+/* 輪播圖 */
+.slick-dots {
+    bottom: 0;
+}
+
+.bannerSlider-arrow-prev {
+    left: 1rem;
+    transform: scale(2.8);
+    z-index: 999;
+}
+
+.bannerSlider-arrow-prev:before {
+    content: '❮';
+    opacity: .7;
+    color: dimgray;
+}
+
+.bannerSlider-arrow-next {
+    right: 1rem;
+    transform: scale(2.8);
+}
+
+.bannerSlider-arrow-next:before {
+    content: '❯';
+    opacity: .7;
+    color: dimgray;
+}
+
+/* 菜單內容 */
+.mainMenu {
+    position: relative;
+}
+
+.menuTitle {
+    font-size: 24px;
+    color: DarkSlateBlue;
+    font-weight: bold;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.block {
+    border-radius: 10px;
+    background-color: LightSteelBlue;
+}
+
+.cold {
+    width: 20px;
+    height: 20px;
+    background-image: url("./img/cold.svg");
+    background-repeat: no-repeat;
+    filter: invert(40%) sepia(100%) saturate(750%) hue-rotate(180deg) brightness(95%) contrast(95%);
+}
+
+.hot {
+    width: 20px;
+    height: 20px;
+    background-image: url("./img/hot.svg");
+    background-repeat: no-repeat;
+    filter: invert(30%) sepia(100%) saturate(900%) hue-rotate(330deg) brightness(100%) contrast(100%);
+}
+
+@media (min-width: 576px) {
+    .p-innerPage {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media (min-width: 768px) {}
+
+
+@media (min-width: 992px) {
+    .mobile-toolBar {
+        display: none;
+        background-color: blue;
+        height: 180px;
+    }
+
+    .content {
+        padding-bottom: 70px;
+    }
+}
+
+@media (max-width: 992px) {
+    .toolBarRow {
+        display: none;
+    }
+}
