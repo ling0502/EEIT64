@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 a {
     color: var(--bs-body-color);
     text-decoration: none;
@@ -184,6 +188,12 @@ a {
 
     .content {
         padding-bottom: 70px;
+    }
+}
+@media (min-width: 1200px) {
+    .p-innerPage {
+        padding-left: 12%;
+        padding-right: 12%;
     }
 }
 
