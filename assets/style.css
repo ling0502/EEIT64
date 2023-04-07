@@ -142,15 +142,17 @@ a {
 
 .menuTitle {
     font-size: 24px;
-    color: DarkSlateBlue;
+    color: 	DarkSlateBlue;
     font-weight: bold;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 12px 16px;
+    /* padding-left: 16px;
+    padding-right: 16px; */
 }
 
 .block {
+    padding: 8px 0;
     border-radius: 10px;
-    background-color: LightSteelBlue;
+    /* background-color: LightSteelBlue; */
 }
 
 .cold {
@@ -182,8 +184,8 @@ a {
 @media (min-width: 992px) {
     .mobile-toolBar {
         display: none;
-        background-color: blue;
-        height: 180px;
+        /* background-color: blue;
+        height: 180px; */
     }
 
     .content {
