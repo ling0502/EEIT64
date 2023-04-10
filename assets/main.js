@@ -174,6 +174,20 @@ $('.product').on('click', function (event) {
 
     // 顯示 product_dialog 元素
     $('.product_dialog').show();
+
+    // 判斷按鈕相對應屬性如果不符合，則按鈕不可點選
+    var coldVisibility = $(this).find('.cold').css('visibility');
+    var hotVisibility = $(this).find('.hot').css('visibility');
+
+    if (coldVisibility === 'hidden') {
+        $('.ice').attr('disabled', true);
+    }
+    if (hotVisibility === 'hidden') {
+        $('.temperature').attr('disabled', true);
+    }
+    if (coldVisibility === 'hidden' && hotVisibility === 'hidden') {
+        $('.cup').attr('disabled', true);
+    }
 });
 
 $('.cup-block button').click(function () {
@@ -192,9 +206,7 @@ $('#confirm').on('click', function () {
 
     // 判斷 cup-block 及 temp-block 各有一個按鈕的背景顏色是否有樣式
     if (selectedCup === 1 && selectedTemp === 1) {
-        $('.cup-block button').removeClass('block-selected');
-        $('.temp-block button').removeClass('block-selected');
-        $('.product_dialog').fadeOut(300);
+        closeProductDialog();
     } else {
         if (selectedCup === 0) {
             $('.cup-block').addClass('unselect');
@@ -207,7 +219,6 @@ $('#confirm').on('click', function () {
             .addClass('shake');
 
         setTimeout(function () {
-            console.log($('.unselect'))
             $('.unselect').removeClass('shake');
             $('.unselect').removeClass('border border-danger')
             $('.cup-block').removeClass('unselect');
@@ -222,9 +233,7 @@ $(document).on('mousedown', function (event) {
         // 隱藏 .product 元素
         let product_dialog = $(this).find('.product_dialog');
         if (product_dialog.is(":visible")) {
-            $('.cup-block button').removeClass('block-selected');
-            $('.temp-block button').removeClass('block-selected');
-            product_dialog.fadeOut(300);
+            closeProductDialog();
         }
     }
 });
@@ -250,5 +259,17 @@ $('#plus').on('click', function () {
     num++;
     numElem.text(num);
 });
+
+function closeProductDialog() {
+    setTimeout(function () {
+        $('.cup').attr('disabled', false);
+        $('.ice').attr('disabled', false);
+        $('.temperature').attr('disabled', false);
+        $('.cup-block button').removeClass('block-selected');
+        $('.temp-block button').removeClass('block-selected');
+    }, 300)
+
+    $('.product_dialog').fadeOut(300);
+}
 
 // -------------- 菜單點擊後出現訂餐資訊框 ---------end----------- //

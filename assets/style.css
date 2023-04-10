@@ -207,30 +207,47 @@ a {
     padding: 12px;
 }
 
-.block-selected{
-    background-color:PaleTurquoise;
+.block-selected {
+    background-color: PaleTurquoise;
+    cursor: default
 }
 
 .shake {
     animation: shake 0.2s;
     animation-iteration-count: 2;
-  }
-  
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-  }
+}
 
-#cust-option {
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.cust-option {
     width: 30%;
     padding: 8px;
     border-radius: 8px;
 }
 
-#cust-option:hover {
+.cust-option:hover {
     background-color: PaleTurquoise;
+}
+
+.cust-option:disabled:hover {
+    background-color: inherit;
+    cursor: not-allowed;
 }
 
 #cust-price {
