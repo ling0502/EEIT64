@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- google MAP API -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWxMmSOrFAc2Qf5yEezArQw7Bzo94cIMo&callback=initMap&v=weekly"
+        defer></script>
 
     <link href="./assets/style.css" rel="stylesheet">
     <script type="module" src="./assets/main.js"></script>
@@ -139,7 +143,19 @@
                             <b>其他分店</b>
                             <div class="msgBox msgBox_branch">
                                 <div class="closeBtn"><i class="fa-regular fa-circle-xmark fa-2xl"></i></div>
-                                <div class="infoImg"><img src="./assets/img/branch.png"></img></div>
+                                <!-- <div class="infoImg"><img src="./assets/img/branch.png"></img></div> -->
+                                <div>
+                                    <label for="select-store">
+                                        <h4><b>分店選擇： </b></h4>
+                                    </label>
+                                    <select id="select-store">
+                                        <option value="Taoyuan">桃園分店</option>
+                                        <option value="Taichung" selected>台中旗艦店</option>
+                                        <option value="Tainan">台南分店</option>
+                                        <option value="Kaohsiung">高雄分店</option>
+                                    </select>
+                                    <div id="map" style="height: 400px;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -603,6 +619,87 @@
 
             infinite: true,
         });
+
+        // ----- 分店資訊串接google MAP API -------start--------- //
+        let jsonObj = JSON.parse(json);
+        console.log(jsonObj['store_branch'])
+
+        function geoLocation(latitude, longitude) {
+            let lat = parseFloat(latitude)
+            let lng = parseFloat(longitude)
+            return { lat: lat, lng: lng }
+        }
+        let map;
+        let marker;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                // 放大率
+                zoom: 7,
+                center: geoLocation(
+                    jsonObj['store_branch'][1].latitude,
+                    jsonObj['store_branch'][1].longitude),
+                mapId: '9164b05c2b2b3aa0'
+
+            });
+
+            marker = new google.maps.Marker({
+                position: geoLocation(
+                    jsonObj['store_branch'][1].latitude,
+                    jsonObj['store_branch'][1].longitude),
+                map: map,
+            });
+        }
+
+        document.getElementById("select-store").addEventListener("change", function () {
+            const value = this.value;
+            let newLatLng = null;
+
+            switch (value) {
+                case "Taoyuan":
+                    map.setCenter(geoLocation(
+                        jsonObj['store_branch'][0].latitude,
+                        jsonObj['store_branch'][0].longitude));
+                    newLatLng = geoLocation(
+                        jsonObj['store_branch'][0].latitude,
+                        jsonObj['store_branch'][0].longitude);
+                    break;
+                case "Taichung":
+                    map.setCenter(geoLocation(
+                        jsonObj['store_branch'][1].latitude,
+                        jsonObj['store_branch'][1].longitude));
+                    newLatLng = geoLocation(
+                        jsonObj['store_branch'][1].latitude,
+                        jsonObj['store_branch'][1].longitude);
+                    break;
+                case "Tainan":
+                    map.setCenter(geoLocation(
+                        jsonObj['store_branch'][2].latitude,
+                        jsonObj['store_branch'][2].longitude));
+                    newLatLng = geoLocation(
+                        jsonObj['store_branch'][2].latitude,
+                        jsonObj['store_branch'][2].longitude);
+                    break;
+                case "Kaohsiung":
+                    map.setCenter(geoLocation(
+                        jsonObj['store_branch'][3].latitude,
+                        jsonObj['store_branch'][3].longitude));
+                    newLatLng = geoLocation(
+                        jsonObj['store_branch'][3].latitude,
+                        jsonObj['store_branch'][3].longitude);
+                    break;
+            }
+
+            if (newLatLng) {
+                marker.setAnimation(google.maps.Animation.BOUNCE); 
+                marker.setPosition(newLatLng);
+                map.panTo(newLatLng); // 移動地圖視角至新的位置
+                setTimeout(() => {
+                    marker.setAnimation(null);
+                }, 1000);
+            }
+        })
+        // ----- 分店資訊串接google MAP API ---------end--------- //
+
     </script>
 </body>
 
