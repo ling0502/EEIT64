@@ -84,7 +84,7 @@ function restoreBlockTopStyle(element) {
 $('.moreInfo').on('click', function (event) {
     var msgBox = $(this).find('.msgBox');
     if (msgBox.is(":visible")) {
-        msgBox.fadeOut(300);
+        // msgBox.fadeOut(300);
     } else {
         $('.msgBox').fadeOut(300);
         msgBox.fadeIn(300);
