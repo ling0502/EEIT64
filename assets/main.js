@@ -75,19 +75,33 @@ function setBlockTopStyle(element, index) {
         let preBlockHeight = $('.menublock').eq(preBlockIndex).height();
         $(element).css('top', `calc(${preBlockHeight}px + 20px)`);
     }
+    $('.mainMenu').css('height', $('.mainMenu').height());
 }
 // 復原設定菜單區塊style.top
 function restoreBlockTopStyle(element) {
     $(element).css('top', '');
 }
 
-$('.moreInfo').on('click', function (event) {
+$('.moreInfo').on('click', function () {
     var msgBox = $(this).find('.msgBox');
-    if (msgBox.is(":visible")) {
-        // msgBox.fadeOut(300);
-    } else {
-        $('.msgBox').fadeOut(300);
+    if (!msgBox.is(":visible")) {
         msgBox.fadeIn(300);
+    }
+});
+$('.closeBtn').on('click', function () {
+    if ($('.msgBox').is(":visible")) {
+        $('.msgBox').fadeOut(300);
+    }
+});
+
+$(document).on('mousedown', function (event) {
+    // 檢查點擊的元素是否為 .msgBox 元素或其子元素
+    if (!$(event.target).closest('.msgBox').length) {
+        // 隱藏 .msgBox 元素
+        let msgBox = $(this).find('.msgBox');
+        if (msgBox.is(":visible")) {
+            msgBox.fadeOut(300);
+        }
     }
 });
 
@@ -98,7 +112,7 @@ $('.moreInfo').on('click', function (event) {
 // ------- div > mainMenu 裡面的資料從JSON取得 -------start--------- //
 
 // JSON資料解析
-/*let jsonObj = JSON.parse(json);
+let jsonObj = JSON.parse(json);
 
 // 建立各類別物件
 var catGroup = {};
@@ -155,9 +169,10 @@ $.each(catGroup, function (category, products) {
     // 全部內容串接好之後更新到菜單區塊
     $('.mainMenu').append($categoryDiv);
 });
+$categoryDiv.last().css('margin-bottom', '5rem');
 
 // ------- div > mainMenu 裡面的資料從JSON取得 -------end--------- //
-*/
+
 
 
 // -------------- 菜單點擊後出現訂餐資訊框 ---------start--------- //
