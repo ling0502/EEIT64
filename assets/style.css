@@ -2,6 +2,10 @@
     display: none;
 }
 
+:root {
+    --main-color: PaleTurquoise;
+}
+
 a {
     color: var(--bs-body-color);
     text-decoration: none;
@@ -12,10 +16,14 @@ a {
     height: 60px;
 }
 
+.toolBarRow {
+    min-height: 60px;
+    margin-top: -60px;
+}
+
 .content {
-    padding-top: 70px;
-    padding-bottom: 80px;
-    /* height: calc(100% + 200px) */
+    padding-top: 60px;
+    /* padding-bottom: 70px; */
 }
 
 .mobile-toolBar {
@@ -26,11 +34,16 @@ a {
 .toolBarList {
     flex: auto;
     cursor: pointer;
-    text-align: center;
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
 }
 
 .toolBarList:hover {
-    background-color: gold;
+    background-color: var(--main-color);;
 }
 
 .toolBarText {
@@ -38,24 +51,17 @@ a {
     font-weight: bold;
 }
 
-.toolBarText:hover {
-    color: var(--bs-body-color);
-}
-
 /* 底部工具列(小視窗才顯示) */
-.mobile-toolBarList:hover {
-    background-color: gold;
-}
-
 .mobile-toolBarList {
     flex: auto;
     cursor: pointer;
     padding: 0;
     min-width: 80px;
+    z-index: 999;
 }
 
 .mobile-toolBarList:hover {
-    background-color: gold;
+    background-color: var(--main-color);;
 }
 
 .mobile-toolBarText {
@@ -100,7 +106,7 @@ a {
     max-width: 100%;
 }
 
-.msgBox img{
+.msgBox img {
     max-width: 100%;
 }
 
@@ -209,7 +215,7 @@ a {
 }
 
 .block-selected {
-    background-color: PaleTurquoise;
+    background-color: var(--main-color);
     cursor: default
 }
 
@@ -243,7 +249,7 @@ a {
 }
 
 .cust-option:hover {
-    background-color: PaleTurquoise;
+    background-color: var(--main-color);
 }
 
 .cust-option:disabled:hover {
@@ -267,7 +273,7 @@ a {
 
 #confirm {
     border-radius: 8px;
-    background-color: PaleTurquoise;
+    background-color: var(--main-color);
 }
 
 
@@ -284,8 +290,6 @@ a {
 @media (min-width: 992px) {
     .mobile-toolBar {
         display: none;
-        /* background-color: blue;
-        height: 180px; */
     }
 }
 
