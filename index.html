@@ -54,29 +54,31 @@
 
 <body>
     <nav class="toolBar p-innerPage fixed-top bg-light">
-        <div class="position-absolute w-100 text-center">
-            <a href="#"><img src="./assets/img/logo.png" alt="logo" width="60px"></a>
+        <div class="text-center">
+            <img src="./assets/img/logo.png" alt="logo" width="60px">
         </div>
 
-        <div class="row toolBarRow align-items-center" style="min-height: 60px">
-            <div class="col-5 text-center d-flex">
-                <div class="toolBarList">
-                    <a class="toolBarText" href="#">菜單</a>
+        <div class="row toolBarRow">
+            <div class="col-5 d-flex">
+                <div class="toolBarList" onclick="click_order()">
+                    <div class="toolBarText">菜單</div>
                 </div>
-                <div class="toolBarList">
-                    <a class="toolBarText" href="#">購物車</a>
+                <div class="toolBarList" onclick="click_order()">
+                    <div class="toolBarText">購物車</div>
                 </div>
-                <div class="toolBarList">
-                    <a class="toolBarText" href="#">優惠券</a>
+                <div class="toolBarList" onclick="click_order()">
+                    <div class="toolBarText">優惠券</div>
                 </div>
-                <div class="toolBarList">
-                    <a class="toolBarText" href="#">聯繫我們</a>
+                <div class="toolBarList" onclick="click_order()">
+                    <div class="toolBarText">聯繫我們</div>
                 </div>
             </div>
 
-            <div class="col-7 text-end toolBarText">
+            <div class="col-5"></div>
+
+            <div class="col-2 toolBarList justify-content-around">
                 <img src="./assets/img/icon_member.png" alt="login" width="30px" height="30px">
-                <a href="#">登入/註冊</a>
+                <div class="toolBarText" onclick="click_order()">登入/註冊</div>
             </div>
         </div>
     </nav>
@@ -143,7 +145,6 @@
                             <b>其他分店</b>
                             <div class="msgBox msgBox_branch">
                                 <div class="closeBtn"><i class="fa-regular fa-circle-xmark fa-2xl"></i></div>
-                                <!-- <div class="infoImg"><img src="./assets/img/branch.png"></img></div> -->
                                 <div>
                                     <label for="select-store">
                                         <h4><b>分店選擇： </b></h4>
@@ -174,7 +175,7 @@
             <div class="col-12 col-lg-4">
                 <div class="menublock shadow">
                     <div class="menuTitle">純茶</div>
-                    <div>
+                    <div class="products">
                         <ul style="list-style-type:none;">
                             <li class="product">
                                 <div>
@@ -208,6 +209,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p04.jpg" width="40px">
@@ -239,6 +241,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p06.jpg" width="40px">
@@ -249,6 +252,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p07.jpg" width="40px">
@@ -259,6 +263,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>45</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p08.jpg" width="40px">
@@ -269,6 +274,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p09.jpg" width="40px">
@@ -279,6 +285,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>50</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p10.jpg" width="40px">
@@ -289,6 +296,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>45</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p11.jpg" width="40px">
@@ -299,6 +307,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>50</b></div>
                                 </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -319,6 +328,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>55</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p13.jpg" width="40px">
@@ -329,6 +339,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>55</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p14.jpg" width="40px">
@@ -339,6 +350,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>60</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p15.jpg" width="40px">
@@ -349,6 +361,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>60</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p16.jpg" width="40px">
@@ -359,6 +372,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>55</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p17.jpg" width="40px">
@@ -369,6 +383,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>65</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p18.jpg" width="40px">
@@ -379,6 +394,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>65</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p19.jpg" width="40px">
@@ -389,6 +405,7 @@
                                     <div class="hot mx-1"></div>
                                     <div class="price mx-2"><b>65</b></div>
                                 </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -409,6 +426,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p21.jpg" width="40px">
@@ -419,6 +437,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p22.jpg" width="40px">
@@ -429,6 +448,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>40</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p23.jpg" width="40px">
@@ -439,6 +459,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>55</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p24.jpg" width="40px">
@@ -449,6 +470,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>55</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p25.jpg" width="40px">
@@ -459,6 +481,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>45</b></div>
                                 </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -479,6 +502,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p27.jpg" width="40px">
@@ -489,6 +513,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p28.jpg" width="40px">
@@ -499,6 +524,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p29.jpg" width="40px">
@@ -509,6 +535,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p30.jpg" width="40px">
@@ -519,6 +546,7 @@
                                     <div class="hot mx-1" style="visibility: hidden"></div>
                                     <div class="price mx-2"><b>30</b></div>
                                 </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -570,25 +598,25 @@
 
     <footer class="mobile-toolBar p-innerPage fixed-bottom rounded-2 bg-light">
         <div class="text-center d-flex">
-            <div class="mobile-toolBarList" onclick="click_order()">
+            <a href="./index.html" class="mobile-toolBarList" >
                 <img src="./assets/img/icon_order.png" alt="order" class="mobile-toolBarImg">
                 <h5 class="mobile-toolBarText">菜單</h5>
-            </div>
-
-            <div class="mobile-toolBarList" onclick="click_cart()">
+            </a>
+    
+            <a href="./cart.html" class="mobile-toolBarList" >
                 <img src="./assets/img/icon_cart.png" alt="cart" class="mobile-toolBarImg">
                 <h5 class="mobile-toolBarText">購物車</h5>
-            </div>
-
-            <div class="mobile-toolBarList" onclick="click_warn()">
+            </a>
+    
+            <a href="./ticket.html" class="mobile-toolBarList" >
                 <img src="./assets/img/icon_list.png" alt="warn" class="mobile-toolBarImg">
                 <h5 class="mobile-toolBarText">優惠券</h5>
-            </div>
-
-            <div class="mobile-toolBarList" onclick="click_member()">
+            </a>
+    
+            <a href="./member.html" class="mobile-toolBarList" >
                 <img src="./assets/img/icon_member.png" alt="member" class="mobile-toolBarImg">
                 <h5 class="mobile-toolBarText">我的</h5>
-            </div>
+            </a>
         </div>
     </footer>
 
@@ -633,8 +661,7 @@
         let marker;
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
-                // 放大率
-                zoom: 7,
+                zoom: 12,
                 center: geoLocation(
                     jsonObj['store_branch'][1].latitude,
                     jsonObj['store_branch'][1].longitude),
