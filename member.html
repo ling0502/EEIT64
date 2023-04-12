@@ -31,20 +31,9 @@
     }
 
     .login {
-        /* 扣掉上下導覽列高度*/
         min-height: calc(100vh - 60px);
-        display: flex;
-        justify-content: center;
-        background-color: #eee;
-    }
-
-    .login-block {
-        width: 100%;
-        max-width: 400px;
         background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        text-align: -webkit-center;
     }
 
     .title-block {
@@ -67,7 +56,7 @@
     }
 
     .input-block {
-        width: 75%;
+        width: 85%;
     }
 
     .input-group {
@@ -100,7 +89,7 @@
     }
 
     .confirm {
-        width: 75%;
+        width: 85%;
         font-size: 24px;
         letter-spacing: 0.2rem;
         margin-top: 1.5rem;
@@ -136,10 +125,11 @@
     }
 
     .other-block {
-        width: 75%;
+        width: 85%;
         height: 50px;
         display: flex;
         margin-top: 3rem;
+        margin-bottom: 1.5rem;
         font-size: 3em;
     }
 
@@ -184,11 +174,26 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        
+
         color: black;
         font-size: 18px;
         font-weight: bold;
         letter-spacing: 0.2rem;
+    }
+
+
+    @media (min-width: 576px) {
+        .login {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .login {
+            padding-left: 20%;
+            padding-right: 20%;
+        }
     }
 </style>
 
@@ -201,56 +206,54 @@
     </script>
 
     <div class="content">
-        <div class="login">
-            <div class="login-block shadow">
-                <div class="title-block mt-4">歡迎使用點餐系統</div>
-                <div>請先登入/註冊，通過驗證後開始使用</div>
-                <button class="register">手機註冊</button>
+        <div class="login shadow">
+            <div class="title-block mt-4">歡迎使用點餐系統</div>
+            <div>請先登入/註冊，通過驗證後開始使用</div>
+            <button class="register">手機註冊</button>
 
-                <div class="input-block">
-                    <div class="input-group rounded-2" id="account">
-                        <div class="inputPrepend col-2">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-
-                        <input type="tel" pattern="^09\d{8}$" style="border:none" class="form-control col-8"
-                            placeholder="手機號碼" required>
-                        <div class="inputAppend col-2">
-                            <i class="fa-solid fa-circle-exclamation warning"></i>
-                        </div>
+            <div class="input-block">
+                <div class="input-group rounded-2" id="account">
+                    <div class="inputPrepend col-2">
+                        <i class="fa-solid fa-phone"></i>
                     </div>
-                    <p class="tipsText">僅限台灣手機號碼</p>
 
-                    <div class="input-group rounded-2" id="password">
-                        <div class="inputPrepend col-2">
-                            <i class="fa-solid fa-key"></i>
-                        </div>
-
-                        <!-- (?=.*\d): 包含至少一個數字  /  (?=.*[a-zA-Z]): 包含至少一個英文字母 -->
-                        <input type="password" style="border:none" class="form-control col-8" placeholder="密碼"
-                            pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,20}" autocomplete="new-password" required>
-                        <div class="inputAppend col-2">
-                            <i class="fa-solid fa-circle-exclamation warning"></i>
-                        </div>
+                    <input type="tel" pattern="^09\d{8}$" style="border:none" class="form-control col-8"
+                        placeholder="手機號碼" required>
+                    <div class="inputAppend col-2">
+                        <i class="fa-solid fa-circle-exclamation warning"></i>
                     </div>
-                    <p class="tipsText">6-20位英數混合，不需區分大小寫</p>
                 </div>
+                <p class="tipsText">僅限台灣手機號碼</p>
 
-                <button class="confirm" onclick="click_confirm()">登入</button>
+                <div class="input-group rounded-2" id="password">
+                    <div class="inputPrepend col-2">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
 
-                <i class="fa-solid fa-circle-question mt-3"> 忘記密碼</i>
-
-                <div class="other-block">
-                    <i class="col-4 fa-brands fa-line" style="color: #00b900;"></i>
-                    <i class="col-4 fa-brands fa-google-plus" style="color: red;"></i>
-                    <i class="col-4 fa-brands fa-square-facebook" style="color: #06f;"></i>
+                    <!-- (?=.*\d): 包含至少一個數字  /  (?=.*[a-zA-Z]): 包含至少一個英文字母 -->
+                    <input type="password" style="border:none" class="form-control col-8" placeholder="密碼"
+                        pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,20}" autocomplete="new-password" required>
+                    <div class="inputAppend col-2">
+                        <i class="fa-solid fa-circle-exclamation warning"></i>
+                    </div>
                 </div>
-
-                <b class="mt-5">登入即代表您同意
-                    <span class="highlight">使用者條款</span>和
-                    <span class="highlight">隱私權條款</span>
-                </b>
+                <p class="tipsText">6-20位英數混合，不需區分大小寫</p>
             </div>
+
+            <button class="confirm" onclick="click_confirm()">登入</button>
+
+            <i class="fa-solid fa-circle-question mt-3"> 忘記密碼</i>
+
+            <div class="other-block">
+                <i class="col-4 fa-brands fa-line" style="color: #00b900;"></i>
+                <i class="col-4 fa-brands fa-google-plus" style="color: red;"></i>
+                <i class="col-4 fa-brands fa-square-facebook" style="color: #06f;"></i>
+            </div>
+
+            <b>登入即代表您同意
+                <span class="highlight">使用者條款</span>和
+                <span class="highlight">隱私權條款</span>
+            </b>
         </div>
 
         <div class="dialog-box" style="display: none;">
@@ -289,7 +292,7 @@
             }
         }
 
-        startOrderBtn.addEventListener("click", function(){
+        startOrderBtn.addEventListener("click", function () {
             dialogBox.style.display = "none";
         });
     </script>
