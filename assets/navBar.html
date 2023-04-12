@@ -1,0 +1,99 @@
+<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    :root {
+        --main-color: PaleTurquoise;
+    }
+
+    a {
+        color: var(--bs-body-color);
+        text-decoration: none;
+    }
+
+    .toolBar {
+        height: 60px;
+    }
+
+    .toolBarRow {
+        min-height: 60px;
+        margin-top: -60px;
+    }
+
+    .content {
+        padding-top: 60px;
+        /* padding-bottom: 70px; */
+    }
+
+    /* 頂端工具列(大視窗才顯示) */
+    .toolBarList {
+        flex: auto;
+        cursor: pointer;
+        z-index: 999;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 60px;
+    }
+
+    .toolBarList:hover {
+        background-color: var(--main-color);
+    }
+
+    .toolBarText {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: black;
+    }
+
+    @media (min-width: 576px) {
+        .p-innerPage {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .p-innerPage {
+            padding-left: 12%;
+            padding-right: 12%;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .toolBarRow {
+            display: none;
+        }
+    }
+</style>
+<nav class="toolBar p-innerPage fixed-top bg-light">
+    <div class="text-center">
+        <img src="./assets/img/logo.png" alt="logo" width="60px">
+    </div>
+
+    <div class="row toolBarRow">
+        <div class="col-5 d-flex">
+            <a href="./index.html" class="toolBarList">
+                <div class="toolBarText">菜單</div>
+            </a>
+            <div class="toolBarList" onclick="click_order()">
+                <div class="toolBarText">購物車</div>
+            </div>
+            <div class="toolBarList" onclick="click_order()">
+                <div class="toolBarText">優惠券</div>
+            </div>
+            <div class="toolBarList" onclick="click_order()">
+                <div class="toolBarText">聯繫我們</div>
+            </div>
+        </div>
+
+        <div class="col-5"></div>
+
+        <div class="col-2 toolBarList justify-content-around">
+            <i class="fa-regular fa-circle-user fa-xl"></i>
+            <div class="toolBarText" onclick="click_order()">登入/註冊</div>
+        </div>
+    </div>
+</nav>
