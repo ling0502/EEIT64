@@ -31,9 +31,21 @@
     }
 
     .login {
+        /* 扣掉上下導覽列高度*/
+        /* min-height: calc(100vh - 60px); */
+        display: flex;
+        justify-content: center;
+    }
+
+    .login-block {
         min-height: calc(100vh - 60px);
+        /* justify-content: center; */
+        width: 100%;
+        max-width: 400px;
         background-color: white;
-        text-align: -webkit-center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .title-block {
@@ -129,7 +141,6 @@
         height: 50px;
         display: flex;
         margin-top: 3rem;
-        margin-bottom: 1.5rem;
         font-size: 3em;
     }
 
@@ -174,26 +185,11 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-
+        
         color: black;
         font-size: 18px;
         font-weight: bold;
         letter-spacing: 0.2rem;
-    }
-
-
-    @media (min-width: 576px) {
-        .login {
-            padding-left: 10%;
-            padding-right: 10%;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .login {
-            padding-left: 20%;
-            padding-right: 20%;
-        }
     }
 </style>
 
@@ -206,54 +202,56 @@
     </script>
 
     <div class="content">
-        <div class="login shadow">
-            <div class="title-block mt-4">歡迎使用點餐系統</div>
-            <div>請先登入/註冊，通過驗證後開始使用</div>
-            <button class="register">手機註冊</button>
+        <div class="login">
+            <div class="login-block shadow">
+                <div class="title-block mt-4">歡迎使用點餐系統</div>
+                <div>請先登入/註冊，通過驗證後開始使用</div>
+                <button class="register">手機註冊</button>
 
-            <div class="input-block">
-                <div class="input-group rounded-2" id="account">
-                    <div class="inputPrepend col-2">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
+                <div class="input-block">
+                    <div class="input-group rounded-2" id="account">
+                        <div class="inputPrepend col-2">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
 
-                    <input type="tel" pattern="^09\d{8}$" style="border:none" class="form-control col-8"
-                        placeholder="手機號碼" required>
-                    <div class="inputAppend col-2">
-                        <i class="fa-solid fa-circle-exclamation warning"></i>
+                        <input type="tel" pattern="^09\d{8}$" style="border:none" class="form-control col-8"
+                            placeholder="手機號碼" required>
+                        <div class="inputAppend col-2">
+                            <i class="fa-solid fa-circle-exclamation warning"></i>
+                        </div>
                     </div>
+                    <p class="tipsText">僅限台灣手機號碼</p>
+
+                    <div class="input-group rounded-2" id="password">
+                        <div class="inputPrepend col-2">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+
+                        <!-- (?=.*\d): 包含至少一個數字  /  (?=.*[a-zA-Z]): 包含至少一個英文字母 -->
+                        <input type="password" style="border:none" class="form-control col-8" placeholder="密碼"
+                            pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,20}" autocomplete="new-password" required>
+                        <div class="inputAppend col-2">
+                            <i class="fa-solid fa-circle-exclamation warning"></i>
+                        </div>
+                    </div>
+                    <p class="tipsText">6-20位英數混合，不需區分大小寫</p>
                 </div>
-                <p class="tipsText">僅限台灣手機號碼</p>
 
-                <div class="input-group rounded-2" id="password">
-                    <div class="inputPrepend col-2">
-                        <i class="fa-solid fa-key"></i>
-                    </div>
+                <button class="confirm" onclick="click_confirm()">登入</button>
 
-                    <!-- (?=.*\d): 包含至少一個數字  /  (?=.*[a-zA-Z]): 包含至少一個英文字母 -->
-                    <input type="password" style="border:none" class="form-control col-8" placeholder="密碼"
-                        pattern="(?=.*\d)(?=.*[a-zA-Z]).{6,20}" autocomplete="new-password" required>
-                    <div class="inputAppend col-2">
-                        <i class="fa-solid fa-circle-exclamation warning"></i>
-                    </div>
+                <i class="fa-solid fa-circle-question mt-3"> 忘記密碼</i>
+
+                <div class="other-block">
+                    <i class="col-4 fa-brands fa-line" style="color: #00b900;"></i>
+                    <i class="col-4 fa-brands fa-google-plus" style="color: red;"></i>
+                    <i class="col-4 fa-brands fa-square-facebook" style="color: #06f;"></i>
                 </div>
-                <p class="tipsText">6-20位英數混合，不需區分大小寫</p>
+
+                <b class="mt-5">登入即代表您同意
+                    <span class="highlight">使用者條款</span>和
+                    <span class="highlight">隱私權條款</span>
+                </b>
             </div>
-
-            <button class="confirm" onclick="click_confirm()">登入</button>
-
-            <i class="fa-solid fa-circle-question mt-3"> 忘記密碼</i>
-
-            <div class="other-block">
-                <i class="col-4 fa-brands fa-line" style="color: #00b900;"></i>
-                <i class="col-4 fa-brands fa-google-plus" style="color: red;"></i>
-                <i class="col-4 fa-brands fa-square-facebook" style="color: #06f;"></i>
-            </div>
-
-            <b>登入即代表您同意
-                <span class="highlight">使用者條款</span>和
-                <span class="highlight">隱私權條款</span>
-            </b>
         </div>
 
         <div class="dialog-box" style="display: none;">
@@ -273,17 +271,17 @@
     </script>
 
     <script>
-        const dialogBox = document.querySelector(".dialog-box");
-        const startOrderBtn = document.querySelector(".startOrderBtn");
+        let dialogBox = document.querySelector(".dialog-box");
+        let startOrderBtn = document.querySelector(".startOrderBtn");
         function click_confirm() {
-            const phoneInput = document.querySelector('input[type="tel"]');
-            const passwordInput = document.querySelector('input[type="password"]');
+            let phoneInput = document.querySelector('input[type="tel"]');
+            let passwordInput = document.querySelector('input[type="password"]');
 
             if (phoneInput.validity.valid && passwordInput.validity.valid) {
                 dialogBox.style.display = "block";
             } else {
-                const invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
-                const inputGroup = invalidInput.closest('.input-group');
+                let invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
+                let inputGroup = invalidInput.closest('.input-group');
                 inputGroup.classList.add('shake');
 
                 setTimeout(() => {
@@ -292,7 +290,7 @@
             }
         }
 
-        startOrderBtn.addEventListener("click", function () {
+        startOrderBtn.addEventListener("click", function(){
             dialogBox.style.display = "none";
         });
     </script>
