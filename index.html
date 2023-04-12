@@ -9,9 +9,10 @@
 
     <link rel="icon" href="./assets/img/favicon.png">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+    <!-- bootstrap5 - 前端框架 -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link href="./assets/src/plugins/bootstrap5.2/bootstrap.min.css" rel="stylesheet">
 
     <!-- jquery插件 -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -23,17 +24,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js"></script>
 
     <!-- fontAwesome - icon插件 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link href="./assets/src/plugins/fontawesome/css/all.min.css" rel="stylesheet">
 
     <!-- google MAP API -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWxMmSOrFAc2Qf5yEezArQw7Bzo94cIMo&callback=initMap&v=weekly"
         defer></script>
 
-    <link href="./assets/style.css" rel="stylesheet">
-    <script type="module" src="./assets/main.js"></script>
-    <script src="./assets/data.js"></script>
+    <script src="./assets/src/data.js"></script>
+    <script type="module" src="./assets/src/main.js"></script>
+    <link rel="stylesheet" href="./assets/src/style.css">
+    <link rel="import" href="./assets/navBar.html">
+    <link rel="import" href="./assets/mobile-navBar.html">
+
 
     <style>
         html,
@@ -45,7 +50,6 @@
         .slick-slider,
         .slick-list,
         .slick-track {
-            /* height: 100%; */
             max-height: 350px;
         }
     </style>
@@ -53,35 +57,12 @@
 </head>
 
 <body>
-    <nav class="toolBar p-innerPage fixed-top bg-light">
-        <div class="text-center">
-            <img src="./assets/img/logo.png" alt="logo" width="60px">
-        </div>
-
-        <div class="row toolBarRow">
-            <div class="col-5 d-flex">
-                <div class="toolBarList" onclick="click_order()">
-                    <div class="toolBarText">菜單</div>
-                </div>
-                <div class="toolBarList" onclick="click_order()">
-                    <div class="toolBarText">購物車</div>
-                </div>
-                <div class="toolBarList" onclick="click_order()">
-                    <div class="toolBarText">優惠券</div>
-                </div>
-                <div class="toolBarList" onclick="click_order()">
-                    <div class="toolBarText">聯繫我們</div>
-                </div>
-            </div>
-
-            <div class="col-5"></div>
-
-            <div class="col-2 toolBarList justify-content-around">
-                <img src="./assets/img/icon_member.png" alt="login" width="30px" height="30px">
-                <div class="toolBarText" onclick="click_order()">登入/註冊</div>
-            </div>
-        </div>
-    </nav>
+    <div id="toolBar"></div>
+    <script>
+        $(function () {
+            $('#toolBar').load('./assets/navBar.html');
+        });
+    </script>
 
     <div class="content p-innerPage">
         <div class="top row">
@@ -596,29 +577,12 @@
         </div>
     </div>
 
-    <footer class="mobile-toolBar p-innerPage fixed-bottom rounded-2 bg-light">
-        <div class="text-center d-flex">
-            <a href="./index.html" class="mobile-toolBarList" >
-                <img src="./assets/img/icon_order.png" alt="order" class="mobile-toolBarImg">
-                <h5 class="mobile-toolBarText">菜單</h5>
-            </a>
-    
-            <a href="./cart.html" class="mobile-toolBarList" >
-                <img src="./assets/img/icon_cart.png" alt="cart" class="mobile-toolBarImg">
-                <h5 class="mobile-toolBarText">購物車</h5>
-            </a>
-    
-            <a href="./ticket.html" class="mobile-toolBarList" >
-                <img src="./assets/img/icon_list.png" alt="warn" class="mobile-toolBarImg">
-                <h5 class="mobile-toolBarText">優惠券</h5>
-            </a>
-    
-            <a href="./member.html" class="mobile-toolBarList" >
-                <img src="./assets/img/icon_member.png" alt="member" class="mobile-toolBarImg">
-                <h5 class="mobile-toolBarText">我的</h5>
-            </a>
-        </div>
-    </footer>
+    <div id="mobile-toolBar"></div>
+    <script>
+        $(function () {
+            $('#mobile-toolBar').load('./assets/mobile-navBar.html');
+        });
+    </script>
 
     <script>
         // window.onload = function () {
@@ -717,7 +681,7 @@
             }
 
             if (newLatLng) {
-                marker.setAnimation(google.maps.Animation.BOUNCE); 
+                marker.setAnimation(google.maps.Animation.BOUNCE);
                 marker.setPosition(newLatLng);
                 map.panTo(newLatLng); // 移動地圖視角至新的位置
                 setTimeout(() => {
