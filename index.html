@@ -65,8 +65,8 @@
     </script>
 
     <div class="content p-innerPage">
-        <div class="top row">
-            <div class="col-12 col-lg-4 left rounded pt-2 shadow d-flex flex-column">
+        <div class="row mt-2 ">
+            <div class="col-12 col-lg-4 left pt-2 shadow d-flex flex-column" style="background-color: white;">
                 <div class="row mt-auto align-items-center">
                     <div class="col-4 d-flex align-items-center justify-content-center">
                         <img src="./assets/img/logo2.png">
@@ -161,7 +161,7 @@
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p01.jpg" width="40px">
-                                    <b>阿薩姆紅茶</b>
+                                    <b id="product-name">阿薩姆紅茶</b>
                                 </div>
                                 <div class="d-flex">
                                     <div class="cold mx-1"></div>
@@ -172,7 +172,7 @@
                             <li class="product">
                                 <div>
                                     <img src="./assets/img/products/p02.jpg" width="40px">
-                                    <b>茉莉綠茶</b>
+                                    <b id="product-name">茉莉綠茶</b>
                                 </div>
                                 <div class="d-flex">
                                     <div class="cold mx-1"></div>
@@ -563,7 +563,7 @@
 
             <div class="price-block mb-2 d-flex text-center mt-auto align-items-end">
                 <div class="col-8">
-                    <b class="cust-price">總金額：</b>
+                    <b>總金額：</b><span class="cust-price">0</span>
                     <div class="num-block d-flex justify-content-around">
                         <button id="minus" class="num-btn"> - </button>
                         <b class="cust-num">1</b>
@@ -585,21 +585,6 @@
     </script>
 
     <script>
-        // window.onload = function () {
-        // }
-        function click_order() {
-            alert("click_order")
-        }
-        function click_cart() {
-            alert("click_cart")
-        }
-        function click_warn() {
-            alert("click_warn")
-        }
-        function click_member() {
-            alert("click_member")
-        }
-
         $('#bannerSlider').slick({
             autoplay: true,
             autoplaySpeed: 3500,
@@ -614,7 +599,6 @@
 
         // ----- 分店資訊串接google MAP API -------start--------- //
         let jsonObj = JSON.parse(json);
-        console.log(jsonObj['store_branch'])
 
         function geoLocation(latitude, longitude) {
             let lat = parseFloat(latitude)
@@ -642,7 +626,7 @@
         }
 
         document.getElementById("select-store").addEventListener("change", function () {
-            const value = this.value;
+            let value = this.value;
             let newLatLng = null;
 
             switch (value) {
