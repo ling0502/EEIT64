@@ -12,7 +12,7 @@ window.addEventListener('resize', () => {
 // 依當前畫面大小，判斷是否調整CSS
 function checkVersion() {
     // 搭配html col-lg-4 一起用
-    const lgMedia = window.matchMedia('(min-width: 992px)');
+    let lgMedia = window.matchMedia('(min-width: 992px)');
     if (lgMedia.matches) {
         setMenuBlocks()
         $('.menublock').last().css('margin-bottom', '');
@@ -95,9 +95,9 @@ function restoreBlockTopStyle(element) {
 /*let jsonObj = JSON.parse(json);
 
 // 建立各類別物件
-var catGroup = {};
+let catGroup = {};
 jsonObj['records'].forEach(function (product, i) {
-    var catID = product.category;
+    let catID = product.category;
     if (!(catID in catGroup)) {
         catGroup[catID] = [];
     }
@@ -105,8 +105,8 @@ jsonObj['records'].forEach(function (product, i) {
 })
 
 // 每個類別建立DIV區塊
-var $categoryDiv
-var $productListItem
+let $categoryDiv
+let $productListItem
 $.each(catGroup, function (category, products) {
     $categoryDiv = $(`
     <div class="col-12 col-lg-4">
@@ -122,13 +122,13 @@ $.each(catGroup, function (category, products) {
     `);
 
     // 在類別DIV區塊裡找到ul標籤插入品項內容
-    var $productList = $categoryDiv.find('.products ul');
+    let $productList = $categoryDiv.find('.products ul');
     $.each(products, function (index, product) {
         $productListItem = `
         <li class="product">
             <div>
                 <img src=${product.p_img} width="40px">
-                <b>${product.name}</b>
+                <b id="product-name>${product.name}</b>
             </div>
             <div class="d-flex">
                 <div class="cold mx-1" style="visibility: ${product.beCold === 'N' ? 'hidden' : 'visible'};">
@@ -152,7 +152,7 @@ $.each(catGroup, function (category, products) {
 // ---------------- 更多資訊 點擊控制 -----------start------------ //
 
 $('.moreInfo').on('click', function () {
-    var msgBox = $(this).find('.msgBox');
+    let msgBox = $(this).find('.msgBox');
     if (!msgBox.is(":visible")) {
         msgBox.fadeIn(300);
     }
@@ -179,22 +179,21 @@ $(document).on('mousedown', function (event) {
 
 // -------------- 菜單點擊後出現訂餐資訊框 ---------start--------- //
 $('.product').on('click', function (event) {
-    // 取得商品名稱
-    var title = $(this).find('#product-name').text();
-
-    // 取得商品圖片路徑
-    var imgUrl = $(this).find('img').attr('src');
+    let title = $(this).find('#product-name').text();
+    let imgUrl = $(this).find('img').attr('src');
+    let price = $(this).find('.price').text()
 
     // 選取 product_dialog 元素，並進行內容文字和圖片路徑的取代
     $('.product_dialog .title-block').text(title);
     $('.product_dialog .img-block').attr('src', imgUrl);
+    $('.cust-price').text(price);
 
     // 顯示 product_dialog 元素
     $('.product_dialog').show();
 
     // 判斷按鈕相對應屬性如果不符合，則按鈕不可點選
-    var coldVisibility = $(this).find('.cold').css('visibility');
-    var hotVisibility = $(this).find('.hot').css('visibility');
+    let coldVisibility = $(this).find('.cold').css('visibility');
+    let hotVisibility = $(this).find('.hot').css('visibility');
 
     if (coldVisibility === 'hidden') {
         $('.ice').attr('disabled', true);
@@ -218,12 +217,16 @@ $('.temp-block button').click(function () {
 });
 
 $('#confirm').on('click', function () {
-    var selectedCup = $('.cup-block button.block-selected').length;
-    var selectedTemp = $('.temp-block button.block-selected').length;
+    let selectedCup = $('.cup-block button.block-selected').length;
+    let selectedTemp = $('.temp-block button.block-selected').length;
+    let allCupDisabled = $('.cup[disabled]').length === $('.cup-block button').length;
+    let allTempDisabled = $('.temperature[disabled]').length + $('.ice[disabled]').length === $('.temp-block button').length;
 
-    // 判斷 cup-block 及 temp-block 各有一個按鈕的背景顏色是否有樣式
-    if (selectedCup === 1 && selectedTemp === 1) {
+    // 判斷 cup-block 及 temp-block 各有一個按鈕的背景顏色是否有樣式 / 或全部都不可選
+    if ((selectedCup === 1 && selectedTemp === 1) ||
+        (allCupDisabled && allTempDisabled)) {
         closeProductDialog();
+        saveToLocalStorage();
     } else {
         if (selectedCup === 0) {
             $('.cup-block').addClass('unselect');
@@ -236,8 +239,10 @@ $('#confirm').on('click', function () {
             .addClass('shake');
 
         setTimeout(function () {
-            $('.unselect').removeClass('shake');
-            $('.unselect').removeClass('border border-danger')
+            $('.unselect')
+                .removeClass('shake')
+                .removeClass('border border-danger')
+
             $('.cup-block').removeClass('unselect');
             $('.temp-block').removeClass('unselect');
         }, 600);
@@ -247,7 +252,6 @@ $('#confirm').on('click', function () {
 $(document).on('mousedown', function (event) {
     // 檢查點擊的元素是否為 .product 或 .product_dialog 元素或其子元素
     if (!$(event.target).closest('.detail-block').length) {
-        // 隱藏 .product 元素
         let product_dialog = $(this).find('.product_dialog');
         if (product_dialog.is(":visible")) {
             closeProductDialog();
@@ -255,26 +259,38 @@ $(document).on('mousedown', function (event) {
     }
 });
 
-var minNum = 1;
-var maxNum = 50;
-var numElem = $('.cust-num');
+let minNum = 1;
+let maxNum = 50;
+let custNum = $('.cust-num');
+let custPrice = $('.cust-price');
 
 $('#minus').on('click', function () {
-    var num = parseInt(numElem.text());
+    let num = parseInt(custNum.text());
+    let total = parseInt(custPrice.text());
     if (num <= minNum) {
         return;
     }
+
+    total /= num
     num--;
-    numElem.text(num);
+    total *= num
+
+    custNum.text(num);
+    custPrice.text(total);
 });
 
 $('#plus').on('click', function () {
-    var num = parseInt(numElem.text());
+    let num = parseInt(custNum.text());
+    let total = parseInt(custPrice.text());
     if (num >= maxNum) {
         return;
     }
+    total /= num
     num++;
-    numElem.text(num);
+    total *= num
+
+    custNum.text(num);
+    custPrice.text(total);
 });
 
 function closeProductDialog() {
@@ -284,9 +300,61 @@ function closeProductDialog() {
         $('.temperature').attr('disabled', false);
         $('.cup-block button').removeClass('block-selected');
         $('.temp-block button').removeClass('block-selected');
+        $('.cust-num').text(1);
     }, 300)
 
     $('.product_dialog').fadeOut(300);
 }
 
 // -------------- 菜單點擊後出現訂餐資訊框 ---------end----------- //
+
+
+
+// ----- 選好商品規格後，按下訂購，在本地端儲存資料 -----start----- //
+function saveToLocalStorage() {
+    console.log('saveItem')
+
+    let name = $('.title-block').text();
+    let imgSrc = $('.img-block').attr('src');
+    let price = $('.cust-price').text();
+    let quantity = $('.cust-num').text();
+
+    let productInfo = {
+        name: name,
+        imgSrc: imgSrc,
+        price: price,
+        quantity: quantity
+    };
+
+    // 從 localStorage 中取得目前的資料，為 null 時，則傳回一個空陣列
+    let productInfos = JSON.parse(localStorage.getItem('productInfos')) || [];
+
+    // 將新的 productInfo 加入陣列
+    productInfos.push(productInfo);
+
+    // 將整個陣列存回 localStorage
+    localStorage.setItem('productInfos', JSON.stringify(productInfos));
+    // getFromLocalStorage()
+}
+
+function getFromLocalStorage() {
+
+    return JSON.parse(localStorage.getItem('productInfos')) || [];
+}
+
+function removeItemAtIndex(index) {
+    let items = JSON.parse(localStorage.getItem('productInfos'));
+    if (index > -1 && index < items.length) {
+        items.splice(index, 1);
+        localStorage.setItem('productInfos', JSON.stringify(items));
+    }
+}
+
+function removeFromLocalStorage() {
+    console.log('removeItem');
+    localStorage.clear();
+}
+
+// window.addEventListener('unload', removeFromLocalStorage);
+
+// ----- 選好商品規格後，按下訂購，在本地端儲存資料 -------end----- //
