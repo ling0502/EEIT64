@@ -1,9 +1,5 @@
 
-
-window.addEventListener('load', () => {
-    checkVersion()
-})
-window.addEventListener('resize', () => {
+$(window).resize(function () {
     checkVersion()
 })
 
@@ -26,7 +22,7 @@ function checkVersion() {
 function setMenuBlocks() {
     $('.menublock').each(function (i, element) {
         $(element).css('position', 'absolute');
-        $(element).css('width', 'calc(33.33% - 30px)');
+        $(element).css('width', 'calc(33.33% - 10px)');
 
         setBlockLeftStyle(element, i);
         setBlockTopStyle(element, i);
@@ -76,9 +72,15 @@ function setBlockTopStyle(element, index) {
     } else {
         let preBlockIndex = index - 3;
         let preBlockHeight = $('.menublock').eq(preBlockIndex).height();
-        $(element).css('top', `calc(${preBlockHeight}px + 20px)`);
+        $(element).css('top', `calc(${preBlockHeight}px + 30px)`);
     }
+
     $('.mainMenu').css('height', $('.mainMenu').height());
+
+    setTimeout(function () {
+        $('.loading').hide();
+    }, 500)
+
 }
 // 復原設定菜單區塊style.top
 function restoreBlockTopStyle(element) {
@@ -90,25 +92,31 @@ function restoreBlockTopStyle(element) {
 
 
 // ------- div > mainMenu 裡面的資料從JSON取得 -------start--------- //
+$(function () {
+    let url = "https://raw.githubusercontent.com/ling0502/EEIT64/main/assets/src/data.js";
 
-// JSON資料解析
-/*let jsonObj = JSON.parse(json);
+    $.ajax({
+        url: url,
+        success: function (result) {
 
-// 建立各類別物件
-let catGroup = {};
-jsonObj['records'].forEach(function (product, i) {
-    let catID = product.category;
-    if (!(catID in catGroup)) {
-        catGroup[catID] = [];
-    }
-    catGroup[catID].push(product);
-})
+            // JSON資料解析
+            let jsonObj = JSON.parse(json);
 
-// 每個類別建立DIV區塊
-let $categoryDiv
-let $productListItem
-$.each(catGroup, function (category, products) {
-    $categoryDiv = $(`
+            // 建立各類別物件
+            let catGroup = {};
+            jsonObj['records'].forEach(function (product, i) {
+                let catID = product.category;
+                if (!(catID in catGroup)) {
+                    catGroup[catID] = [];
+                }
+                catGroup[catID].push(product);
+            })
+
+            // 每個類別建立DIV區塊
+            let $categoryDiv
+            let $productListItem
+            $.each(catGroup, function (category, products) {
+                $categoryDiv = $(`
     <div class="col-12 col-lg-4">
         <div class="menublock shadow">
             <div class="menuTitle">${category}</div>
@@ -121,14 +129,14 @@ $.each(catGroup, function (category, products) {
     </div>
     `);
 
-    // 在類別DIV區塊裡找到ul標籤插入品項內容
-    let $productList = $categoryDiv.find('.products ul');
-    $.each(products, function (index, product) {
-        $productListItem = `
+                // 在類別DIV區塊裡找到ul標籤插入品項內容
+                let $productList = $categoryDiv.find('.products ul');
+                $.each(products, function (index, product) {
+                    $productListItem = `
         <li class="product">
             <div>
                 <img src=${product.p_img} width="40px">
-                <b id="product-name>${product.name}</b>
+                <b id="product-name">${product.name}</b>
             </div>
             <div class="d-flex">
                 <div class="cold mx-1" style="visibility: ${product.beCold === 'N' ? 'hidden' : 'visible'};">
@@ -139,15 +147,27 @@ $.each(catGroup, function (category, products) {
             </div>
         </li>`;
 
-        $productList.append($productListItem);
-    });
+                    $productList.append($productListItem);
+                });
 
-    // 全部內容串接好之後更新到菜單區塊
-    $('.mainMenu').append($categoryDiv);
-});
+                // 全部內容串接好之後更新到菜單區塊
+                $('.mainMenu').append($categoryDiv);
+            });
+        },
+        error: function () {
+            $('.loading').html('Error loading data'); // 顯示錯誤訊息
+        }
+    }).done(function () {
+        console.log('done')
+
+        setTimeout(function () {
+            checkVersion()
+        }, 100);
+    })
+})
 
 // ------- div > mainMenu 裡面的資料從JSON取得 -------end--------- //
-*/
+
 
 // ---------------- 更多資訊 點擊控制 -----------start------------ //
 
@@ -365,7 +385,7 @@ function updateItemAtIndex(index, price, num) {
 
 function removeItemAtIndex(index) {
     console.log('removeItemAtIndex');
-    
+
     let items = JSON.parse(localStorage.getItem('productInfos'));
     if (index > -1 && index < items.length) {
         items.splice(index, 1);
