@@ -85,6 +85,10 @@ function setBlockTopStyle(element, index) {
 // 復原設定菜單區塊style.top
 function restoreBlockTopStyle(element) {
     $(element).css('top', '');
+
+    setTimeout(function () {
+        $('.loading').hide();
+    }, 500)
 }
 
 
