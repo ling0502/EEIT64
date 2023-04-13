@@ -36,8 +36,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-left: 20%;
-        margin-right: 20%;
         background-color: white;
         padding-bottom: 70px;
     }
@@ -184,6 +182,26 @@
         font-weight: bold;
         letter-spacing: 0.2rem;
     }
+
+    .deleteDialog-closeBtn {
+        color: black;
+        background-color: gray;
+    }
+
+
+    @media (min-width: 576px) {
+        .order {
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .order {
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+    }
 </style>
 
 <body>
@@ -232,7 +250,10 @@
     <div class="dialog-box deleteDialog" style="display: none;">
         <div class="dialog-content">
             <h2>確定刪除此商品嗎？</h2>
-            <button class="dialog-Btn deleteBtn">刪除</button>
+            <div>
+                <button class="dialog-Btn deleteDialog-closeBtn col-6">取消</button>
+                <button class="dialog-Btn deleteBtn col-6">刪除</button>
+            </div>
         </div>
     </div>
     <div class="dialog-box payDialog" style="display: none;">
@@ -265,6 +286,10 @@
                 updateQuantity($(this), -1);
             });
 
+            $(".deleteDialog-closeBtn").click(function () {
+                $('.deleteDialog').css('display', 'none');
+            });
+
             $(".paying").click(function () {
                 if ($('.buy-list-template').not(':hidden').length == 0) {
                     $('.dialog-price').text('您尚未添加任何商品');
@@ -292,25 +317,28 @@
         });
 
         function showbuyList() {
+            console.log('showbuyList')
             clearBuyList();
 
             let productData = getFromLocalStorage();
-            for (let i = 0; i < productData.length; i++) {
-                let product = productData[i];
-                let buyList = $('.buy-block .buy-list-template').clone().removeAttr('style');
+            let $buyBlock = $('.buy-block');
+            let $template = $('.buy-list-template');
 
-                buyList.find('.product-img img').attr('src', product.imgSrc);
-                buyList.find('.product-name').text(product.name);
-                buyList.find('.product-price').text(product.price);
-                buyList.find('.dropbtn').text(product.quantity);
+            $.each(productData, function (index, product) {
+                let $productElement = $template.clone().removeAttr('style').show();
+                $productElement.find('.product-img img').attr('src', product.imgSrc);
+                $productElement.find('.product-name').text(product.name);
+                $productElement.find('.product-price').text(product.price);
+                $productElement.find('.product-num button').text(product.quantity);
 
-                $('.buy-block').append(buyList);
-            }
+                $buyBlock.append($productElement);
+            });
             setTotalPrice();
         }
-
         function clearBuyList() {
+            console.log('clearBuyList')
             $('.buy-list-template').not(':first').remove();
+
         }
 
         function setTotalPrice() {
@@ -324,6 +352,8 @@
         }
 
         function updateQuantity(btn, delta) {
+            console.log('updateQuantity')
+
             let buyList = btn.closest('.buy-list-template');
             let numBtn = buyList.find('.dropbtn');
             let currentNum = parseInt(numBtn.text());
@@ -332,9 +362,9 @@
 
             if (newNum == 0) {
                 let deleteDialog = $('.deleteDialog');
-                deleteDialog.css('display', 'block');
-                deleteDialog.find('.deleteBtn').click(function () {
-                    deleteDialog.css('display', 'none');
+                deleteDialog.show();
+                deleteDialog.off('click').on('click', '.deleteBtn', function () {
+                    deleteDialog.hide();
 
                     $('.buy-list-template:eq(' + index + ')').remove();
                     removeItemAtIndex(index - 1);
@@ -345,9 +375,11 @@
 
                 let productPrice = buyList.find('.product-price');
                 let price = parseInt(productPrice.text());
-                let unitPrice = price / currentNum;
+                let unitPrice = price * (1 / currentNum);
+                let endPrice = unitPrice * newNum;
                 productPrice.text(unitPrice * newNum);
 
+                updateItemAtIndex(index, endPrice, newNum)
                 setTotalPrice();
             }
         }
