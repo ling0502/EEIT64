@@ -312,12 +312,10 @@ function closeProductDialog() {
 
 // ----- 選好商品規格後，按下訂購，在本地端儲存資料 -----start----- //
 function saveToLocalStorage() {
-    console.log('saveItem')
-
     let name = $('.title-block').text();
     let imgSrc = $('.img-block').attr('src');
     let price = $('.cust-price').text();
-    let quantity = $('.cust-num').text();
+    let quantity = parseInt($('.cust-num').text());
 
     let productInfo = {
         name: name,
@@ -329,12 +327,22 @@ function saveToLocalStorage() {
     // 從 localStorage 中取得目前的資料，為 null 時，則傳回一個空陣列
     let productInfos = JSON.parse(localStorage.getItem('productInfos')) || [];
 
-    // 將新的 productInfo 加入陣列
-    productInfos.push(productInfo);
+    // 尋找相同的商品
+    let existingProduct = productInfos.find(function (item) {
+        return item.imgSrc === productInfo.imgSrc;
+    });
+
+    if (existingProduct) {
+        existingProduct.quantity += quantity;
+    } else {
+        productInfos.push(productInfo);
+    }
 
     // 將整個陣列存回 localStorage
     localStorage.setItem('productInfos', JSON.stringify(productInfos));
-    // getFromLocalStorage()
+
+    console.log(productInfo)
+    console.log(localStorage)
 }
 
 function getFromLocalStorage() {
@@ -342,7 +350,22 @@ function getFromLocalStorage() {
     return JSON.parse(localStorage.getItem('productInfos')) || [];
 }
 
+function updateItemAtIndex(index, price, num) {
+    console.log('updateItemAtIndex');
+
+    let storageIndex = index - 1;
+    let productInfos = JSON.parse(localStorage.getItem('productInfos')) || [];
+
+    if (productInfos[storageIndex]) {
+        productInfos[storageIndex].quantity = num;
+        productInfos[storageIndex].price = price;
+        localStorage.setItem('productInfos', JSON.stringify(productInfos));
+    }
+}
+
 function removeItemAtIndex(index) {
+    console.log('removeItemAtIndex');
+    
     let items = JSON.parse(localStorage.getItem('productInfos'));
     if (index > -1 && index < items.length) {
         items.splice(index, 1);
