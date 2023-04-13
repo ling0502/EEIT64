@@ -91,7 +91,7 @@ let json = `
     "records": [
         {
             "ID": "001",
-            "category": "純茶類",
+            "category": "純茶",
             "name": "阿薩姆紅茶",
             "p_img": "./assets/img/products/p01.jpg",
             "beHot": "Y",
@@ -101,7 +101,7 @@ let json = `
         },
         {
             "ID": "002",
-            "category": "純茶類",
+            "category": "純茶",
             "name": "茉莉綠茶",
             "p_img": "./assets/img/products/p02.jpg",
             "beHot": "Y",
@@ -111,7 +111,7 @@ let json = `
         },
         {
             "ID": "003",
-            "category": "純茶類",
+            "category": "純茶",
             "name": "凍頂烏龍",
             "p_img": "./assets/img/products/p03.jpg",
             "beHot": "Y",
@@ -121,7 +121,7 @@ let json = `
         },
         {
             "ID": "004",
-            "category": "純茶類",
+            "category": "純茶",
             "name": "黃金大麥",
             "p_img": "./assets/img/products/p04.jpg",
             "beHot": "Y",
@@ -131,7 +131,7 @@ let json = `
         },
         {
             "ID": "005",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "熟成奶茶",
             "p_img": "./assets/img/products/p05.jpg",
             "beHot": "Y",
@@ -141,7 +141,7 @@ let json = `
         },
         {
             "ID": "006",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "烏龍奶茶",
             "p_img": "./assets/img/products/p06.jpg",
             "beHot": "Y",
@@ -151,7 +151,7 @@ let json = `
         },
         {
             "ID": "007",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "珍珠奶茶",
             "p_img": "./assets/img/products/p07.jpg",
             "beHot": "Y",
@@ -161,7 +161,7 @@ let json = `
         },
         {
             "ID": "008",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "黑糖奶茶",
             "p_img": "./assets/img/products/p08.jpg",
             "beHot": "Y",
@@ -171,7 +171,7 @@ let json = `
         },
         {
             "ID": "009",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "布丁奶茶",
             "p_img": "./assets/img/products/p09.jpg",
             "beHot": "Y",
@@ -181,7 +181,7 @@ let json = `
         },
         {
             "ID": "010",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "阿華田",
             "p_img": "./assets/img/products/p10.jpg",
             "beHot": "Y",
@@ -191,7 +191,7 @@ let json = `
         },
         {
             "ID": "011",
-            "category": "奶類",
+            "category": "奶茶",
             "name": "冰淇淋紅茶",
             "p_img": "./assets/img/products/p11.jpg",
             "beHot": "N",
@@ -201,7 +201,7 @@ let json = `
         },
         {
             "ID": "012",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "紅茶鮮奶茶",
             "p_img": "./assets/img/products/p12.jpg",
             "beHot": "Y",
@@ -211,7 +211,7 @@ let json = `
         },
         {
             "ID": "013",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "蕎麥鮮奶茶",
             "p_img": "./assets/img/products/p13.jpg",
             "beHot": "Y",
@@ -221,7 +221,7 @@ let json = `
         },
         {
             "ID": "014",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "仙草凍鮮奶茶",
             "p_img": "./assets/img/products/p14.jpg",
             "beHot": "Y",
@@ -231,7 +231,7 @@ let json = `
         },
         {
             "ID": "015",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "小芋圓鮮奶茶",
             "p_img": "./assets/img/products/p15.jpg",
             "beHot": "Y",
@@ -241,7 +241,7 @@ let json = `
         },
         {
             "ID": "016",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "冬瓜鮮奶",
             "p_img": "./assets/img/products/p16.jpg",
             "beHot": "Y",
@@ -251,7 +251,7 @@ let json = `
         },
         {
             "ID": "017",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "黑糖波霸鮮奶",
             "p_img": "./assets/img/products/p17.jpg",
             "beHot": "Y",
@@ -261,7 +261,7 @@ let json = `
         },
         {
             "ID": "018",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "可可鮮奶",
             "p_img": "./assets/img/products/p18.jpg",
             "beHot": "Y",
@@ -271,7 +271,7 @@ let json = `
         },
         {
             "ID": "019",
-            "category": "鮮奶類",
+            "category": "鮮奶茶",
             "name": "抹茶鮮奶",
             "p_img": "./assets/img/products/p19.jpg",
             "beHot": "Y",
@@ -281,7 +281,7 @@ let json = `
         },
         {
             "ID": "020",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "冬瓜檸檬",
             "p_img": "./assets/img/products/p20.jpg",
             "beHot": "N",
@@ -291,7 +291,7 @@ let json = `
         },
         {
             "ID": "021",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "翡翠檸檬",
             "p_img": "./assets/img/products/p21.jpg",
             "beHot": "N",
@@ -301,7 +301,7 @@ let json = `
         },
         {
             "ID": "022",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "百香果綠茶",
             "p_img": "./assets/img/products/p22.jpg",
             "beHot": "N",
@@ -311,7 +311,7 @@ let json = `
         },
         {
             "ID": "023",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "柳橙綠茶",
             "p_img": "./assets/img/products/p23.jpg",
             "beHot": "N",
@@ -321,7 +321,7 @@ let json = `
         },
         {
             "ID": "024",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "葡萄柚蜜茶",
             "p_img": "./assets/img/products/p24.jpg",
             "beHot": "N",
@@ -331,7 +331,7 @@ let json = `
         },
         {
             "ID": "025",
-            "category": "果茶類",
+            "category": "果茶",
             "name": "甘蔗青茶",
             "p_img": "./assets/img/products/p25.jpg",
             "beHot": "N",
@@ -341,7 +341,7 @@ let json = `
         },
         {
             "ID": "026",
-            "category": "點心類",
+            "category": "點點心",
             "name": "奶油紅豆餅",
             "p_img": "./assets/img/products/p26.jpg",
             "beHot": "N",
@@ -351,7 +351,7 @@ let json = `
         },
         {
             "ID": "027",
-            "category": "點心類",
+            "category": "點點心",
             "name": "豆沙紅豆餅",
             "p_img": "./assets/img/products/p27.jpg",
             "beHot": "N",
@@ -361,7 +361,7 @@ let json = `
         },
         {
             "ID": "028",
-            "category": "點心類",
+            "category": "點點心",
             "name": "芋頭紅豆餅",
             "p_img": "./assets/img/products/p28.jpg",
             "beHot": "N",
@@ -371,7 +371,7 @@ let json = `
         },
         {
             "ID": "029",
-            "category": "點心類",
+            "category": "點點心",
             "name": "玉米起司紅豆餅",
             "p_img": "./assets/img/products/p29.jpg",
             "beHot": "N",
@@ -381,7 +381,7 @@ let json = `
         },
         {
             "ID": "030",
-            "category": "點心類",
+            "category": "點點心",
             "name": "OREO紅豆餅",
             "p_img": "./assets/img/products/p30.jpg",
             "beHot": "N",
