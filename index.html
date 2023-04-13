@@ -52,11 +52,33 @@
         .slick-track {
             max-height: 350px;
         }
+
+        .loading {
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+            justify-content: center;
+        }
+
+        .loading img {
+            width: 200px;
+            height: 200px;
+        }
     </style>
 
 </head>
 
 <body>
+    <div class="loading">
+        <img src="./assets/img/load.png">
+    </div>
+
     <div id="toolBar"></div>
     <script>
         $(function () {
@@ -152,7 +174,7 @@
             </div>
         </div>
 
-        <div class="mainMenu row mt-4">
+        <div class="mainMenu row mt-4"> <!-- 
             <div class="col-12 col-lg-4">
                 <div class="menublock shadow">
                     <div class="menuTitle">純茶</div>
@@ -532,150 +554,153 @@
                     </div>
                 </div>
             </div>
+        </div> -->
         </div>
-    </div>
 
-    <div class="product_dialog" style="display: none;">
-        <div class="detail-block d-flex flex-column rounded-2">
-            <b class="title-block"></b>
-            <img src="" class="img-block w-100">
+        <div class="product_dialog" style="display: none;">
+            <div class="detail-block d-flex flex-column rounded-2">
+                <b class="title-block"></b>
+                <img src="" class="img-block w-100">
 
-            <div class="cup-block">
-                <b>杯型</b>
-                <div class="d-flex ps-3 py-2">
-                    <button class="cust-option cup col-4 mx-1">M</button>
-                    <button class="cust-option cup col-4 mx-1">L</button>
-                </div>
-            </div>
-
-            <div class="temp-block">
-                <b>溫度</b>
-                <div class="d-flex ps-3 py-2">
-                    <button class="cust-option ice col-4 mx-1">正常冰</button>
-                    <button class="cust-option ice col-4 mx-1">少冰</button>
-                    <button class="cust-option ice col-4 mx-1">去冰</button>
-                </div>
-                <div class="d-flex ps-3 py-2">
-                    <button class="cust-option temperature col-4 mx-1">溫</button>
-                    <button class="cust-option temperature col-4 mx-1">熱</button>
-                </div>
-            </div>
-
-            <div class="price-block mb-2 d-flex text-center mt-auto align-items-end">
-                <div class="col-8">
-                    <b>總金額：</b><span class="cust-price">0</span>
-                    <div class="num-block d-flex justify-content-around">
-                        <button id="minus" class="num-btn"> - </button>
-                        <b class="cust-num">1</b>
-                        <button id="plus" class="num-btn"> + </button>
+                <div class="cup-block">
+                    <b>杯型</b>
+                    <div class="d-flex ps-3 py-2">
+                        <button class="cust-option cup col-4 mx-1">M</button>
+                        <button class="cust-option cup col-4 mx-1">L</button>
                     </div>
                 </div>
-                <div class="col-4 h-100">
-                    <button id="confirm" class="d-block h-100 w-75 m-auto">訂購</button>
+
+                <div class="temp-block">
+                    <b>溫度</b>
+                    <div class="d-flex ps-3 py-2">
+                        <button class="cust-option ice col-4 mx-1">正常冰</button>
+                        <button class="cust-option ice col-4 mx-1">少冰</button>
+                        <button class="cust-option ice col-4 mx-1">去冰</button>
+                    </div>
+                    <div class="d-flex ps-3 py-2">
+                        <button class="cust-option temperature col-4 mx-1">溫</button>
+                        <button class="cust-option temperature col-4 mx-1">熱</button>
+                    </div>
+                </div>
+
+                <div class="price-block mb-2 d-flex text-center mt-auto align-items-end">
+                    <div class="col-8">
+                        <b>總金額：</b><span class="cust-price">0</span>
+                        <div class="num-block d-flex justify-content-around">
+                            <button id="minus" class="num-btn"> - </button>
+                            <b class="cust-num">1</b>
+                            <button id="plus" class="num-btn"> + </button>
+                        </div>
+                    </div>
+                    <div class="col-4 h-100">
+                        <button id="confirm" class="d-block h-100 w-75 m-auto">訂購</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="mobile-toolBar"></div>
-    <script>
-        $(function () {
-            $('#mobile-toolBar').load('./assets/mobile-navBar.html');
-        });
-    </script>
+        <div id="mobile-toolBar"></div>
+        <script>
+            $(function () {
+                $('#mobile-toolBar').load('./assets/mobile-navBar.html');
+            });
+        </script>
 
-    <script>
-        $('#bannerSlider').slick({
-            autoplay: true,
-            autoplaySpeed: 3500,
+        <script>
+            $(function () {
+                $('#bannerSlider').slick({
+                    autoplay: true,
+                    autoplaySpeed: 3500,
 
-            dots: true,
-            arrows: true,
-            prevArrow: '<button type="button" class="slick-prev bannerSlider-arrow-prev"></button>',
-            nextArrow: '<button type="button" class="slick-next bannerSlider-arrow-next"></button>',
+                    dots: true,
+                    arrows: true,
+                    prevArrow: '<button type="button" class="slick-prev bannerSlider-arrow-prev"></button>',
+                    nextArrow: '<button type="button" class="slick-next bannerSlider-arrow-next"></button>',
 
-            infinite: true,
-        });
-
-        // ----- 分店資訊串接google MAP API -------start--------- //
-        let jsonObj = JSON.parse(json);
-
-        function geoLocation(latitude, longitude) {
-            let lat = parseFloat(latitude)
-            let lng = parseFloat(longitude)
-            return { lat: lat, lng: lng }
-        }
-        let map;
-        let marker;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
-                center: geoLocation(
-                    jsonObj['store_branch'][1].latitude,
-                    jsonObj['store_branch'][1].longitude),
-                mapId: '9164b05c2b2b3aa0'
-
+                    infinite: true,
+                });
             });
 
-            marker = new google.maps.Marker({
-                position: geoLocation(
-                    jsonObj['store_branch'][1].latitude,
-                    jsonObj['store_branch'][1].longitude),
-                map: map,
-            });
-        }
+            // ----- 分店資訊串接google MAP API -------start--------- //
+            let jsonObj = JSON.parse(json);
 
-        document.getElementById("select-store").addEventListener("change", function () {
-            let value = this.value;
-            let newLatLng = null;
+            function geoLocation(latitude, longitude) {
+                let lat = parseFloat(latitude)
+                let lng = parseFloat(longitude)
+                return { lat: lat, lng: lng }
+            }
+            let map;
+            let marker;
 
-            switch (value) {
-                case "Taoyuan":
-                    map.setCenter(geoLocation(
-                        jsonObj['store_branch'][0].latitude,
-                        jsonObj['store_branch'][0].longitude));
-                    newLatLng = geoLocation(
-                        jsonObj['store_branch'][0].latitude,
-                        jsonObj['store_branch'][0].longitude);
-                    break;
-                case "Taichung":
-                    map.setCenter(geoLocation(
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 12,
+                    center: geoLocation(
                         jsonObj['store_branch'][1].latitude,
-                        jsonObj['store_branch'][1].longitude));
-                    newLatLng = geoLocation(
+                        jsonObj['store_branch'][1].longitude),
+                    mapId: '9164b05c2b2b3aa0'
+
+                });
+
+                marker = new google.maps.Marker({
+                    position: geoLocation(
                         jsonObj['store_branch'][1].latitude,
-                        jsonObj['store_branch'][1].longitude);
-                    break;
-                case "Tainan":
-                    map.setCenter(geoLocation(
-                        jsonObj['store_branch'][2].latitude,
-                        jsonObj['store_branch'][2].longitude));
-                    newLatLng = geoLocation(
-                        jsonObj['store_branch'][2].latitude,
-                        jsonObj['store_branch'][2].longitude);
-                    break;
-                case "Kaohsiung":
-                    map.setCenter(geoLocation(
-                        jsonObj['store_branch'][3].latitude,
-                        jsonObj['store_branch'][3].longitude));
-                    newLatLng = geoLocation(
-                        jsonObj['store_branch'][3].latitude,
-                        jsonObj['store_branch'][3].longitude);
-                    break;
+                        jsonObj['store_branch'][1].longitude),
+                    map: map,
+                });
             }
 
-            if (newLatLng) {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                marker.setPosition(newLatLng);
-                map.panTo(newLatLng); // 移動地圖視角至新的位置
-                setTimeout(() => {
-                    marker.setAnimation(null);
-                }, 1000);
-            }
-        })
+            $('#select-store').on('change', function () {
+                let value = $(this).val();
+                let newLatLng = null;
+
+                switch (value) {
+                    case "Taoyuan":
+                        map.setCenter(geoLocation(
+                            jsonObj['store_branch'][0].latitude,
+                            jsonObj['store_branch'][0].longitude));
+                        newLatLng = geoLocation(
+                            jsonObj['store_branch'][0].latitude,
+                            jsonObj['store_branch'][0].longitude);
+                        break;
+                    case "Taichung":
+                        map.setCenter(geoLocation(
+                            jsonObj['store_branch'][1].latitude,
+                            jsonObj['store_branch'][1].longitude));
+                        newLatLng = geoLocation(
+                            jsonObj['store_branch'][1].latitude,
+                            jsonObj['store_branch'][1].longitude);
+                        break;
+                    case "Tainan":
+                        map.setCenter(geoLocation(
+                            jsonObj['store_branch'][2].latitude,
+                            jsonObj['store_branch'][2].longitude));
+                        newLatLng = geoLocation(
+                            jsonObj['store_branch'][2].latitude,
+                            jsonObj['store_branch'][2].longitude);
+                        break;
+                    case "Kaohsiung":
+                        map.setCenter(geoLocation(
+                            jsonObj['store_branch'][3].latitude,
+                            jsonObj['store_branch'][3].longitude));
+                        newLatLng = geoLocation(
+                            jsonObj['store_branch'][3].latitude,
+                            jsonObj['store_branch'][3].longitude);
+                        break;
+                }
+
+                if (newLatLng) {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    marker.setPosition(newLatLng);
+                    map.panTo(newLatLng); // 移動地圖視角至新的位置
+                    setTimeout(() => {
+                        marker.setAnimation(null);
+                    }, 1000);
+                }
+            })
         // ----- 分店資訊串接google MAP API ---------end--------- //
 
-    </script>
+        </script>
 </body>
 
 </html>
