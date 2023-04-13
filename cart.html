@@ -308,12 +308,12 @@
                     removeFromLocalStorage()
                 });
             });
-        });
 
-        $(document).mouseup(function (event) {
-            if (!$('.dropdown').is(event.target) && $('.dropdown').has(event.target).length === 0) {
-                $('.dropdown').removeClass('active');
-            }
+            $(document).mouseup(function (event) {
+                if (!$('.dropdown').is(event.target) && $('.dropdown').has(event.target).length === 0) {
+                    $('.dropdown').removeClass('active');
+                }
+            });
         });
 
         function showbuyList() {
@@ -335,6 +335,7 @@
             });
             setTotalPrice();
         }
+        
         function clearBuyList() {
             console.log('clearBuyList')
             $('.buy-list-template').not(':first').remove();

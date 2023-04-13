@@ -185,7 +185,7 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        
+
         color: black;
         font-size: 18px;
         font-weight: bold;
@@ -271,27 +271,29 @@
     </script>
 
     <script>
-        let dialogBox = document.querySelector(".dialog-box");
-        let startOrderBtn = document.querySelector(".startOrderBtn");
-        function click_confirm() {
-            let phoneInput = document.querySelector('input[type="tel"]');
-            let passwordInput = document.querySelector('input[type="password"]');
+        $(function () {
+            let dialogBox = document.querySelector(".dialog-box");
+            let startOrderBtn = document.querySelector(".startOrderBtn");
+            function click_confirm() {
+                let phoneInput = document.querySelector('input[type="tel"]');
+                let passwordInput = document.querySelector('input[type="password"]');
 
-            if (phoneInput.validity.valid && passwordInput.validity.valid) {
-                dialogBox.style.display = "block";
-            } else {
-                let invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
-                let inputGroup = invalidInput.closest('.input-group');
-                inputGroup.classList.add('shake');
+                if (phoneInput.validity.valid && passwordInput.validity.valid) {
+                    dialogBox.style.display = "block";
+                } else {
+                    let invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
+                    let inputGroup = invalidInput.closest('.input-group');
+                    inputGroup.classList.add('shake');
 
-                setTimeout(() => {
-                    inputGroup.classList.remove('shake');
-                }, 1000);
+                    setTimeout(() => {
+                        inputGroup.classList.remove('shake');
+                    }, 1000);
+                }
             }
-        }
 
-        startOrderBtn.addEventListener("click", function(){
-            dialogBox.style.display = "none";
+            startOrderBtn.addEventListener("click", function () {
+                dialogBox.style.display = "none";
+            });
         });
     </script>
 
