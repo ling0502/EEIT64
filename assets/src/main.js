@@ -162,11 +162,12 @@ $(function () {
             $('.loading').html('Error loading data'); // 顯示錯誤訊息
         }
     }).done(function () {
-        console.log('done')
 
         setTimeout(function () {
+            // console.log('done')
+            // console.log($('.menublock').eq(0).prop('offsetHeight'))
             checkVersion()
-        }, 100);
+        }, 500);
     })
 })
 
@@ -365,8 +366,8 @@ function saveToLocalStorage() {
     // 將整個陣列存回 localStorage
     localStorage.setItem('productInfos', JSON.stringify(productInfos));
 
-    console.log(productInfo)
-    console.log(localStorage)
+    // console.log(productInfo)
+    // console.log(localStorage)
 }
 
 function getFromLocalStorage() {
@@ -375,7 +376,7 @@ function getFromLocalStorage() {
 }
 
 function updateItemAtIndex(index, price, num) {
-    console.log('updateItemAtIndex');
+    // console.log('updateItemAtIndex');
 
     let storageIndex = index - 1;
     let productInfos = JSON.parse(localStorage.getItem('productInfos')) || [];
@@ -388,7 +389,7 @@ function updateItemAtIndex(index, price, num) {
 }
 
 function removeItemAtIndex(index) {
-    console.log('removeItemAtIndex');
+    // console.log('removeItemAtIndex');
 
     let items = JSON.parse(localStorage.getItem('productInfos'));
     if (index > -1 && index < items.length) {
@@ -398,7 +399,7 @@ function removeItemAtIndex(index) {
 }
 
 function removeFromLocalStorage() {
-    console.log('removeItem');
+    // console.log('removeItem');
     localStorage.clear();
 }
 
