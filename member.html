@@ -39,7 +39,8 @@
 
     .login-block {
         min-height: calc(100vh - 60px);
-        /* justify-content: center; */
+        margin-bottom: 70px;
+        justify-content: center;
         width: 100%;
         max-width: 400px;
         background-color: white;
@@ -247,7 +248,7 @@
                     <i class="col-4 fa-brands fa-square-facebook" style="color: #06f;"></i>
                 </div>
 
-                <b class="mt-5">登入即代表您同意
+                <b class="my-5">登入即代表您同意
                     <span class="highlight">使用者條款</span>和
                     <span class="highlight">隱私權條款</span>
                 </b>
@@ -271,26 +272,27 @@
     </script>
 
     <script>
-        $(function () {
-            let dialogBox = document.querySelector(".dialog-box");
-            let startOrderBtn = document.querySelector(".startOrderBtn");
-            function click_confirm() {
-                let phoneInput = document.querySelector('input[type="tel"]');
-                let passwordInput = document.querySelector('input[type="password"]');
+        let dialogBox = document.querySelector(".dialog-box");
+        let startOrderBtn = document.querySelector(".startOrderBtn");
 
-                if (phoneInput.validity.valid && passwordInput.validity.valid) {
-                    dialogBox.style.display = "block";
-                } else {
-                    let invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
-                    let inputGroup = invalidInput.closest('.input-group');
-                    inputGroup.classList.add('shake');
+        function click_confirm() {
+            let phoneInput = document.querySelector('input[type="tel"]');
+            let passwordInput = document.querySelector('input[type="password"]');
 
-                    setTimeout(() => {
-                        inputGroup.classList.remove('shake');
-                    }, 1000);
-                }
+            if (phoneInput.validity.valid && passwordInput.validity.valid) {
+                dialogBox.style.display = "block";
+            } else {
+                let invalidInput = phoneInput.validity.valid ? passwordInput : phoneInput;
+                let inputGroup = invalidInput.closest('.input-group');
+                inputGroup.classList.add('shake');
+
+                setTimeout(() => {
+                    inputGroup.classList.remove('shake');
+                }, 1000);
             }
+        }
 
+        $(function () {
             startOrderBtn.addEventListener("click", function () {
                 dialogBox.style.display = "none";
             });
