@@ -97,14 +97,14 @@ function restoreBlockTopStyle(element) {
 
 // ------- div > mainMenu 裡面的資料從JSON取得 -------start--------- //
 $(function () {
-    let url = "https://raw.githubusercontent.com/ling0502/EEIT64/main/assets/src/data.js";
+    let url = "https://raw.githubusercontent.com/ling0502/EEIT64/main/assets/src/testData.json";
 
     $.ajax({
         url: url,
         success: function (result) {
 
             // JSON資料解析
-            let jsonObj = JSON.parse(json);
+            let jsonObj = JSON.parse(result);
 
             // 建立各類別物件
             let catGroup = {};
@@ -174,36 +174,8 @@ $(function () {
 // ------- div > mainMenu 裡面的資料從JSON取得 -------end--------- //
 
 
-// ---------------- 更多資訊 點擊控制 -----------start------------ //
-
-$('.moreInfo').on('click', function () {
-    let msgBox = $(this).find('.msgBox');
-    if (!msgBox.is(":visible")) {
-        msgBox.fadeIn(300);
-    }
-});
-$('.closeBtn').on('click', function () {
-    if ($('.msgBox').is(":visible")) {
-        $('.msgBox').fadeOut(300);
-    }
-});
-
-$(document).on('mousedown', function (event) {
-    // 檢查點擊的元素是否為 .msgBox 元素或其子元素
-    if (!$(event.target).closest('.msgBox').length) {
-        // 隱藏 .msgBox 元素
-        let msgBox = $(this).find('.msgBox');
-        if (msgBox.is(":visible")) {
-            msgBox.fadeOut(300);
-        }
-    }
-});
-
-// ---------------- 更多資訊 點擊控制 -------------end------------ //
-
-
 // -------------- 菜單點擊後出現訂餐資訊框 ---------start--------- //
-$('.product').on('click', function (event) {
+$('.mainMenu').on('click', '.product', function() {
     let title = $(this).find('#product-name').text();
     let imgUrl = $(this).find('img').attr('src');
     let price = $(this).find('.price').text()
