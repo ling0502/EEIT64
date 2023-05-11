@@ -1,10 +1,25 @@
 $(window).on('load', function () {
+    toggleBacktotop()
 
 })
+
+$(window).on('scroll', function () {
+    toggleBacktotop()
+
+});
 
 $(window).on('resize', function () {
     checkVersion()
 })
+
+function toggleBacktotop() {
+    let backtotop = $('.back-to-top')
+    if (window.scrollY > 100) {
+        backtotop.css('display', 'flex');
+    } else {
+        backtotop.css('display', 'none');
+    }
+}
 
 // ------- div > mainMenu 區塊排版 ------------start---------------- //
 
