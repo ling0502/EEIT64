@@ -310,14 +310,18 @@ $('#plus').on('click', function () {
 
 function updateCartBadge() {
     $('.cartBadge').css('display', 'inline-block');
+    $('.mobile-cartBadge').css('display', 'inline-block');
 
     let localstorageCart = getFromLocalStorage();
     $('.cartBadge').text(localstorageCart.length);
+    $('.mobile-cartBadge').text(localstorageCart.length);
 }
 
 function resetCartBadge() {
     $('.cartBadge').text(0);
     $('.cartBadge').css('display', 'none');
+    $('.mobile-cartBadge').text(0);
+    $('.mobile-cartBadge').css('display', 'none');
 }
 
 function closeProductDialog() {
