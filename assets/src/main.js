@@ -1,5 +1,8 @@
+$(window).on('load', function () {
 
-$(window).resize(function () {
+})
+
+$(window).on('resize', function () {
     checkVersion()
 })
 
@@ -175,7 +178,7 @@ $(function () {
 
 
 // -------------- 菜單點擊後出現訂餐資訊框 ---------start--------- //
-$('.mainMenu').on('click', '.product', function() {
+$('.mainMenu').on('click', '.product', function () {
     let title = $(this).find('#product-name').text();
     let imgUrl = $(this).find('img').attr('src');
     let price = $(this).find('.price').text()
@@ -290,6 +293,18 @@ $('#plus').on('click', function () {
     custPrice.text(total);
 });
 
+function updateCartBadge() {
+    $('.cartBadge').css('display', 'inline-block');
+
+    let localstorageCart = getFromLocalStorage();
+    $('.cartBadge').text(localstorageCart.length);
+}
+
+function resetCartBadge() {
+    $('.cartBadge').text(0);
+    $('.cartBadge').css('display', 'none');
+}
+
 function closeProductDialog() {
     setTimeout(function () {
         $('.cup').attr('disabled', false);
@@ -321,6 +336,7 @@ function saveToLocalStorage() {
         quantity: quantity
     };
 
+
     // 從 localStorage 中取得目前的資料，為 null 時，則傳回一個空陣列
     let productInfos = JSON.parse(localStorage.getItem('productInfos')) || [];
 
@@ -338,8 +354,9 @@ function saveToLocalStorage() {
     // 將整個陣列存回 localStorage
     localStorage.setItem('productInfos', JSON.stringify(productInfos));
 
-    // console.log(productInfo)
-    // console.log(localStorage)
+    // 更新購物車縮圖數量
+    updateCartBadge();
+
 }
 
 function getFromLocalStorage() {
@@ -368,11 +385,17 @@ function removeItemAtIndex(index) {
         items.splice(index, 1);
         localStorage.setItem('productInfos', JSON.stringify(items));
     }
+
+    // 更新購物車縮圖數量
+    updateCartBadge();
 }
 
 function removeFromLocalStorage() {
     // console.log('removeItem');
     localStorage.clear();
+
+    // 更新購物車縮圖數量
+    updateCartBadge();
 }
 
 // window.addEventListener('unload', removeFromLocalStorage);
