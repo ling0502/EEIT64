@@ -27,6 +27,12 @@
         background-color: #eee;
     }
 
+    .cartBadge {
+        padding: 5px;
+        transform: translate(-8px, -15px);
+        line-height: 12px;
+    }
+
     /* 頂端工具列(大視窗才顯示) */
     .toolBarList {
         flex: auto;
@@ -80,22 +86,40 @@
                 <div class="toolBarText">菜單</div>
             </a>
             <a href="./cart.html" class="toolBarList">
-                <div class="toolBarText">購物車</div>
+                <div class="toolBarText">購物車
+                    <div class="cartBadge position-absolute badge rounded bg-danger" style="display:none">0</div>
+                </div>
             </a>
             <a href="./member.html" class="toolBarList">
                 <div class="toolBarText">優惠券</div>
             </a>
-            <a href="./member.html" class="toolBarList">
-                <!-- <div class="toolBarText">聯繫我們</div> -->
+            <a href="./contact.html" class="toolBarList">
+                <div class="toolBarText">聯繫我們</div>
             </a>
         </div>
 
         <div class="col-5"></div>
 
         <div class="col-2 toolBarList justify-content-around">
-            <i class="fa-regular fa-circle-user fa-xl"></i>
-            <a href="./member.html" class="toolBarText">登入/註冊
+            <!-- 登入後 登入改會員 -->
+            <a href="./member.html" class="toolBarText">
+                <div class="toolBarText"><i class="fa-regular fa-circle-user fa-xl"></i> 登入</div>
+            </a>
         </div>
     </div>
-    </div>
 </nav>
+
+<script>
+    $(function () {
+        $('.cartBadge').css('display', 'inline-block');
+        let localstorageCart = JSON.parse(localStorage.getItem('productInfos'));
+
+        if (localstorageCart == null) {
+            $('.cartBadge').text(0);
+            $('.cartBadge').css('display', 'none');
+        } else {
+            $('.cartBadge').text(localstorageCart.length);
+        }
+    });
+
+</script>
