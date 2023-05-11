@@ -26,7 +26,8 @@
     }
 
     .mobile-toolBarList:hover {
-        background-color: var(--main-color);;
+        background-color: var(--main-color);
+        ;
     }
 
     .mobile-toolBarText {
@@ -41,6 +42,11 @@
         padding: 0.25rem;
     }
 
+    .mobile-cartBadge {
+        padding: 5px;
+        transform: translate(20px, -70px);
+        line-height: 12px;
+    }
 
     @media (min-width: 576px) {
         .p-innerPage {
@@ -70,24 +76,40 @@
 </style>
 <footer class="mobile-toolBar p-innerPage fixed-bottom rounded-2 bg-light">
     <div class="text-center d-flex">
-        <a href="./index.html" class="mobile-toolBarList" >
+        <a href="./index.html" class="mobile-toolBarList">
             <img src="./assets/img/icon_order.png" alt="order" class="mobile-toolBarImg">
             <h5 class="mobile-toolBarText">菜單</h5>
         </a>
 
-        <a href="./cart.html" class="mobile-toolBarList" >
+        <a href="./cart.html" class="mobile-toolBarList">
             <img src="./assets/img/icon_cart.png" alt="cart" class="mobile-toolBarImg">
             <h5 class="mobile-toolBarText">購物車</h5>
+            <div class="mobile-cartBadge position-absolute badge rounded bg-danger" style="display:none">0</div>
         </a>
 
-        <a href="./member.html" class="mobile-toolBarList" >
+        <a href="./member.html" class="mobile-toolBarList">
             <img src="./assets/img/icon_list.png" alt="warn" class="mobile-toolBarImg">
             <h5 class="mobile-toolBarText">優惠券</h5>
         </a>
 
-        <a href="./member.html" class="mobile-toolBarList" >
+        <a href="./member.html" class="mobile-toolBarList">
             <img src="./assets/img/icon_member.png" alt="member" class="mobile-toolBarImg">
             <h5 class="mobile-toolBarText">我的</h5>
         </a>
     </div>
 </footer>
+
+<script>
+    $(function () {
+        $('.mobile-cartBadge').css('display', 'inline-block');
+        let localstorageCart = JSON.parse(localStorage.getItem('productInfos'));
+
+        if (localstorageCart == null) {
+            $('.mobile-cartBadge').text(0);
+            $('.mobile-cartBadge').css('display', 'none');
+        } else {
+            $('.mobile-cartBadge').text(localstorageCart.length);
+        }
+    });
+
+</script>
