@@ -105,7 +105,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: bold;
         background-color: white;
         color: black;
@@ -162,14 +162,14 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: #fff;
-        padding: 4rem;
+        padding: 3rem;
         text-align: center;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
     .dialog-Btn {
-        padding: 10px 20px;
+        padding: 0.75rem;
         margin-top: 2rem;
         background-color: #ff5e7d;
 
@@ -183,7 +183,8 @@
         letter-spacing: 0.2rem;
     }
 
-    .deleteDialog-closeBtn {
+    .deleteDialog-closeBtn,
+    .payDialog-closeBtn {
         color: black;
         background-color: gray;
     }
@@ -222,7 +223,10 @@
                     <div class="product-img col-3 px-1">
                         <img src="">
                     </div>
-                    <div class="product-name col-5 px-1"></div>
+                    <div class="col-5 px-1">
+                        <span class="product-name"></span>
+                        <p class="product-detail" style="color:#888"></p>
+                    </div>
                     <b>$</b>
                     <div class="product-price col-2 px-1">0</div>
 
@@ -250,16 +254,19 @@
     <div class="dialog-box deleteDialog" style="display: none;">
         <div class="dialog-content">
             <h2>確定刪除此商品嗎？</h2>
-            <div>
-                <button class="dialog-Btn deleteDialog-closeBtn col-6">取消</button>
-                <button class="dialog-Btn deleteBtn col-6">刪除</button>
+            <div class="d-flex">
+                <button class="dialog-Btn deleteDialog-closeBtn col-6  mx-1">取消</button>
+                <button class="dialog-Btn deleteBtn col-6  mx-1">刪除</button>
             </div>
         </div>
     </div>
     <div class="dialog-box payDialog" style="display: none;">
         <div class="dialog-content">
             <h2 class="dialog-price">0</h2>
-            <button class="dialog-Btn payBtn">結帳</button>
+            <div class="d-flex">
+                <button class="dialog-Btn payDialog-closeBtn col-6  mx-1">取消</button>
+                <button class="dialog-Btn payBtn col-6  mx-1">結帳</button>
+            </div>
         </div>
     </div>
 
@@ -289,6 +296,9 @@
             $(".deleteDialog-closeBtn").click(function () {
                 $('.deleteDialog').css('display', 'none');
             });
+            $(".payDialog-closeBtn").click(function () {
+                $('.payDialog').css('display', 'none');
+            });
 
             $(".paying").click(function () {
                 if ($('.buy-list-template').not(':hidden').length == 0) {
@@ -317,7 +327,7 @@
         });
 
         function showbuyList() {
-            console.log('showbuyList')
+            // console.log('showbuyList')
             clearBuyList();
 
             let productData = getFromLocalStorage();
@@ -325,21 +335,23 @@
             let $template = $('.buy-list-template');
 
             $.each(productData, function (index, product) {
+                console.log('unitPrice = ' + product.unitPrice )
+                console.log(product.quantity )
                 let $productElement = $template.clone().removeAttr('style').show();
                 $productElement.find('.product-img img').attr('src', product.imgSrc);
                 $productElement.find('.product-name').text(product.name);
-                $productElement.find('.product-price').text(product.price);
+                $productElement.find('.product-detail').text(product.cup + " , " + product.temp);
+                $productElement.find('.product-price').text(product.unitPrice * product.quantity);
                 $productElement.find('.product-num button').text(product.quantity);
 
                 $buyBlock.append($productElement);
             });
             setTotalPrice();
         }
-        
-        function clearBuyList() {
-            console.log('clearBuyList')
-            $('.buy-list-template').not(':first').remove();
 
+        function clearBuyList() {
+            // console.log('clearBuyList')
+            $('.buy-list-template').not(':first').remove();
         }
 
         function setTotalPrice() {
