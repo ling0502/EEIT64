@@ -111,14 +111,16 @@
 
 <script>
     $(function () {
-        $('.cartBadge').css('display', 'inline-block');
         let localstorageCart = JSON.parse(localStorage.getItem('productInfos'));
+        let cartNum = localstorageCart == null ? 0 : localstorageCart.length;
 
-        if (localstorageCart == null) {
+        if (cartNum <= 0) {
             $('.cartBadge').text(0);
             $('.cartBadge').css('display', 'none');
         } else {
-            $('.cartBadge').text(localstorageCart.length);
+            $('.cartBadge').css('display', 'inline-block');
+            $('.cartBadge').text(cartNum);
+            console.log('else')
         }
     });
 

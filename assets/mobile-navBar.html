@@ -101,14 +101,15 @@
 
 <script>
     $(function () {
-        $('.mobile-cartBadge').css('display', 'inline-block');
         let localstorageCart = JSON.parse(localStorage.getItem('productInfos'));
+        let cartNum = localstorageCart == null ? 0 : localstorageCart.length;
 
-        if (localstorageCart == null) {
+        if (cartNum <= 0) {
             $('.mobile-cartBadge').text(0);
             $('.mobile-cartBadge').css('display', 'none');
         } else {
-            $('.mobile-cartBadge').text(localstorageCart.length);
+            $('.mobile-cartBadge').css('display', 'inline-block');
+            $('.mobile-cartBadge').text(cartNum);
         }
     });
 
