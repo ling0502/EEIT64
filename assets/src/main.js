@@ -201,8 +201,9 @@ $('.mainMenu').on('click', '.product', function () {
     // 選取 product_dialog 元素，並進行內容文字和圖片路徑的取代
     $('.product_dialog .title-block').text(title);
     $('.product_dialog .img-block').attr('src', imgUrl);
+    $('.cust-unitPrice').text(price);
     $('.cust-price').text(price);
-
+    
     // 顯示 product_dialog 元素
     $('.product_dialog').show();
 
@@ -309,19 +310,20 @@ $('#plus').on('click', function () {
 });
 
 function updateCartBadge() {
-    $('.cartBadge').css('display', 'inline-block');
-    $('.mobile-cartBadge').css('display', 'inline-block');
-
     let localstorageCart = getFromLocalStorage();
-    $('.cartBadge').text(localstorageCart.length);
-    $('.mobile-cartBadge').text(localstorageCart.length);
-}
+    let cartNum = localstorageCart == null ? 0 : localstorageCart.length;
 
-function resetCartBadge() {
-    $('.cartBadge').text(0);
-    $('.cartBadge').css('display', 'none');
-    $('.mobile-cartBadge').text(0);
-    $('.mobile-cartBadge').css('display', 'none');
+    if (cartNum <= 0) {
+        $('.cartBadge').text(0);
+        $('.mobile-cartBadge').text(0);
+        $('.cartBadge').css('display', 'none');
+        $('.mobile-cartBadge').css('display', 'none');
+    } else {
+        $('.cartBadge').css('display', 'inline-block');
+        $('.mobile-cartBadge').css('display', 'inline-block');
+        $('.cartBadge').text(localstorageCart.length);
+        $('.mobile-cartBadge').text(localstorageCart.length);
+    }
 }
 
 function closeProductDialog() {
@@ -345,12 +347,18 @@ function closeProductDialog() {
 function saveToLocalStorage() {
     let name = $('.title-block').text();
     let imgSrc = $('.img-block').attr('src');
+    let cup = $('.cup-block button.block-selected').text();
+    let temp = $('.temp-block button.block-selected').text();
+    let unitPrice = $('.cust-unitPrice').text();
     let price = $('.cust-price').text();
     let quantity = parseInt($('.cust-num').text());
 
     let productInfo = {
         name: name,
         imgSrc: imgSrc,
+        cup: cup,
+        temp: temp,
+        unitPrice: unitPrice,
         price: price,
         quantity: quantity
     };
@@ -361,7 +369,7 @@ function saveToLocalStorage() {
 
     // 尋找相同的商品
     let existingProduct = productInfos.find(function (item) {
-        return item.imgSrc === productInfo.imgSrc;
+        return item.name === productInfo.name && item.cup === productInfo.cup && item.temp === productInfo.temp;
     });
 
     if (existingProduct) {
